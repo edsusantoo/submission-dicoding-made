@@ -1,3 +1,21 @@
 <resources>
     <string name="app_name">Movied</string>
+    <string name="minus">-</string>
+    <string name="get_started">Get Started</string>
+    <string name="title">Title</string>
+    <string name="log_in_with_one_of_following_options">Log in with one of following options</string>
+    <string name="email">Email</string>
+    <string name="enter_your_email">Enter your email</string>
+    <string name="password">Password</string>
+    <string name="enter_your_password">Enter your password</string>
+    <string name="log_in">Log in</string>
+    <string name="dont_have_an_account">Dont have an account ?</string>
+    <string name="sign_up">Sign up</string>
+    <string name="sign_up_with_one_of_following_options">Sign up with one of following options</string>
+    <string name="enter_your_username">Enter your username</string>
+    <string name="username">Username</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="create_account">Create Account</string>
+    <string name="already_have_an_account">Already have an account ?</string>
+    <string name="login">Login</string>
 </resources>
