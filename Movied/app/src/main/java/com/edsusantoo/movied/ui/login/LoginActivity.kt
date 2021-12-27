@@ -6,21 +6,27 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.TextView
 import com.edsusantoo.movied.R
+import com.edsusantoo.movied.databinding.ActivityLoginBinding
+import com.edsusantoo.movied.ui.main.MainActivity
 import com.edsusantoo.movied.ui.register.RegisterActivity
 import com.google.android.material.button.MaterialButton
 
 class LoginActivity : AppCompatActivity() {
+    private lateinit var binding:ActivityLoginBinding
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login)
+        binding = ActivityLoginBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        val tvTitle = findViewById<TextView>(R.id.tv_title)
-        tvTitle.text = "Login"
+        binding.appBar.tvTitle.text = "Login"
 
-        val btnRegister = findViewById<TextView>(R.id.btn_signup)
-        btnRegister.setOnClickListener {
+        binding.btnSignup.setOnClickListener {
             startActivity(Intent(this,RegisterActivity::class.java))
+        }
+
+        binding.btnLogin.setOnClickListener {
+            startActivity(Intent(this,MainActivity::class.java))
         }
 
     }

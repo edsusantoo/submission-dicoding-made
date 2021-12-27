@@ -4,17 +4,19 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.edsusantoo.movied.R
+import com.edsusantoo.movied.databinding.ActivityWelcomeBinding
 import com.edsusantoo.movied.ui.login.LoginActivity
 import com.edsusantoo.movied.ui.register.RegisterActivity
 import com.google.android.material.button.MaterialButton
 
 class WelcomeActivity : AppCompatActivity() {
+    private lateinit var binding : ActivityWelcomeBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_welcome)
+        binding = ActivityWelcomeBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        val btnGetStarted = findViewById<MaterialButton>(R.id.btn_get_started)
-        btnGetStarted.setOnClickListener {
+        binding.btnGetStarted.setOnClickListener {
             startActivity(Intent(this, RegisterActivity::class.java))
         }
     }
