@@ -5,5 +5,6 @@ object Constants {
     const val TYPE_MOVIE_POPULAR = "popular"
     const val TYPE_MOVIE_UPCOMING = "upcoming"
     const val TYPE_MOVIE_NOW_PLAYING = "now_playing"
+    const val API_KEY_MOVIE = "872528b1cb06cd60ecea1a8870cd50d3"
 
 }
