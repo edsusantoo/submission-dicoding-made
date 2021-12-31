@@ -13,10 +13,11 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import io.reactivex.subjects.PublishSubject
 import io.reactivex.subjects.SingleSubject
+import javax.inject.Inject
 
 @SuppressLint("CheckResult")
-class RemoteDataSource private constructor(private val apiService: ApiService){
-    fun getMoviePopular():Flowable<ApiResponse<ListMovieResponse>>{
+class RemoteDataSource @Inject constructor(private val apiService: ApiService) {
+    fun getMoviePopular(): Flowable<ApiResponse<ListMovieResponse>> {
         val result = PublishSubject.create<ApiResponse<ListMovieResponse>>()
 
         val client = apiService.getMoviePopular()
@@ -25,7 +26,7 @@ class RemoteDataSource private constructor(private val apiService: ApiService){
             .take(1)
             .subscribe({ response ->
                 result.onNext(if (response != null) ApiResponse.Success(response) else ApiResponse.Empty)
-            },{error ->
+            }, { error ->
                 result.onNext(ApiResponse.Error(error.message.toString()))
                 Log.e("Remote Data Source",error.toString())
             })

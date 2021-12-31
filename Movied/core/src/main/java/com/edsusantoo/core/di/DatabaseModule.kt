@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.room.Room
 import com.edsusantoo.core.data.source.local.config.MoviedDatabase
 import com.edsusantoo.core.data.source.local.dao.MovieDao
+import com.edsusantoo.core.data.source.local.dao.UserDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -16,12 +17,15 @@ import javax.inject.Singleton
 class DatabaseModule {
     @Singleton
     @Provides
-    fun provideDatabase(@ApplicationContext context: Context):MoviedDatabase =
+    fun provideDatabase(@ApplicationContext context: Context): MoviedDatabase =
         Room.databaseBuilder(
             context,
-            MoviedDatabase::class.java,"movied.db"
+            MoviedDatabase::class.java, "movied.db"
         ).fallbackToDestructiveMigration().build()
 
     @Provides
-    fun provideMovieDao(database: MoviedDatabase):MovieDao = database.movieDao()
+    fun provideMovieDao(database: MoviedDatabase): MovieDao = database.movieDao()
+
+    @Provides
+    fun provideUserDao(database: MoviedDatabase): UserDao = database.userDao()
 }

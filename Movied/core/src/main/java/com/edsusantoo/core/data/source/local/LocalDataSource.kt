@@ -1,9 +1,5 @@
 package com.edsusantoo.core.data.source.local
 
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
-import androidx.room.Update
 import com.edsusantoo.core.data.source.local.dao.MovieDao
 import com.edsusantoo.core.data.source.local.dao.UserDao
 import com.edsusantoo.core.data.source.local.entity.MovieEntity
@@ -13,20 +9,23 @@ import com.edsusantoo.core.utils.MoviedUtils
 import io.reactivex.Completable
 import io.reactivex.Flowable
 import io.reactivex.Single
+import javax.inject.Inject
 
-class LocalDataSource private constructor(
+class LocalDataSource @Inject constructor(
     private val userDao: UserDao,
     private val movieDao: MovieDao
-){
+) {
     fun getAllMovie(): Flowable<List<MovieEntity>> = movieDao.getAllMovie()
 
-    fun getFavoriteMovie():Flowable<List<MovieEntity>> = movieDao.getFavoriteMovie()
+    fun getAllMovieWhereType(typeMovie: String) = movieDao.getAllMovieWhereType(typeMovie)
 
-    fun getDetailMovie(idMovie:String):Flowable<MovieEntity> = movieDao.getDetailMovie(idMovie)
+    fun getFavoriteMovie(): Flowable<List<MovieEntity>> = movieDao.getFavoriteMovie()
 
-    fun insertMovie(movie:List<MovieEntity>): Completable = movieDao.insertMovie(movie)
+    fun getDetailMovie(idMovie: String): Flowable<MovieEntity> = movieDao.getDetailMovie(idMovie)
 
-    fun setFavoriteMovie(movie:MovieEntity,newState:Boolean){
+    fun insertMovie(movie: List<MovieEntity>): Completable = movieDao.insertMovie(movie)
+
+    fun setFavoriteMovie(movie: MovieEntity, newState: Boolean) {
         movie.isFavorite = newState
         movieDao.updateMovie(movie)
     }

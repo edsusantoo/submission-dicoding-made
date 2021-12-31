@@ -4,13 +4,10 @@ import android.annotation.SuppressLint
 import com.edsusantoo.core.data.source.remote.config.ApiResponse
 import io.reactivex.BackpressureStrategy
 import io.reactivex.Flowable
-import io.reactivex.Scheduler
-import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import io.reactivex.subjects.PublishSubject
-import io.reactivex.subjects.SingleSubject
 
 @SuppressLint("CheckResult")
 abstract class NetworkBoundResource<ResultType,RequestType> {

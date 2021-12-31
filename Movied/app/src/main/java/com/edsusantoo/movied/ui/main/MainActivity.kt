@@ -1,18 +1,17 @@
 package com.edsusantoo.movied.ui.main
 
-import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.edsusantoo.movied.R
 import com.edsusantoo.movied.databinding.ActivityMainBinding
 import com.edsusantoo.movied.ui.favorite.FavoriteFragment
 import com.edsusantoo.movied.ui.home.HomeFragment
-import com.edsusantoo.movied.ui.login.LoginActivity
 import com.edsusantoo.movied.ui.profile.ProfileFragment
 import com.edsusantoo.movied.ui.search.SearchFragment
-import com.google.android.material.button.MaterialButton
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     private lateinit var binding:ActivityMainBinding
 

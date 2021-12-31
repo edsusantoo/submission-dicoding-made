@@ -1,13 +1,145 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/scroll"
+    android:background="@color/blue_dark_400"
     tools:context=".ui.home.HomeFragment">
 
-    <TextView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/home" />
+        android:layout_height="wrap_content"
+        android:padding="16dp">
 
-</FrameLayout>
+        <TextView
+            android:id="@+id/tv_hello_user"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/hello_guest"
+            android:textColor="@color/white"
+            android:textSize="24sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_label_welcome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/welcome_to"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="@+id/tv_hello_user"
+            app:layout_constraintTop_toBottomOf="@+id/tv_hello_user" />
+
+        <TextView
+            android:id="@+id/tv_app_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:fontFamily="@font/pacifico_regular"
+            android:text="@string/app_name"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_label_welcome"
+            app:layout_constraintStart_toEndOf="@+id/tv_label_welcome"
+            app:layout_constraintTop_toTopOf="@+id/tv_label_welcome" />
+
+        <ImageView
+            android:id="@+id/img_design_service"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:contentDescription="@string/minus"
+            android:src="@drawable/ic_baseline_design_services"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_app_name"
+            app:layout_constraintStart_toEndOf="@+id/tv_app_name"
+            app:layout_constraintTop_toTopOf="@+id/tv_app_name"
+            app:tint="@color/red" />
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:contentDescription="@string/minus"
+            android:src="@drawable/ic_user"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_label_welcome"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tv_hello_user" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cv_img_slider"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:cardBackgroundColor="@color/grey_9C_10"
+            app:cardCornerRadius="38dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_label_welcome">
+
+            <com.smarteist.autoimageslider.SliderView
+                android:id="@+id/image_slider"
+                android:layout_width="match_parent"
+                android:layout_height="230dp"
+                app:sliderAnimationDuration="1500"
+                app:sliderAutoCycleDirection="back_and_forth"
+                app:sliderAutoCycleEnabled="true"
+                app:sliderIndicatorAnimationDuration="1500"
+                app:sliderIndicatorGravity="end|top"
+                app:sliderIndicatorMargin="15dp"
+                app:sliderIndicatorOrientation="horizontal"
+                app:sliderIndicatorPadding="3dp"
+                app:sliderIndicatorRadius="3dp"
+                app:sliderIndicatorSelectedColor="@color/green_500"
+                app:sliderIndicatorUnselectedColor="@color/grey_9C_50"
+                app:sliderScrollTimeInSec="5"
+                app:sliderStartAutoCycle="true" />
+        </androidx.cardview.widget.CardView>
+
+        <ProgressBar
+            android:id="@+id/loading_slider"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@+id/cv_img_slider"
+            app:layout_constraintEnd_toEndOf="@+id/cv_img_slider"
+            app:layout_constraintStart_toStartOf="@+id/cv_img_slider"
+            app:layout_constraintTop_toTopOf="@+id/cv_img_slider" />
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/ll_tab"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/bg_tab_movie"
+            android:padding="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cv_img_slider">
+
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tab_movie"
+                style="@style/ChipTabLayoutMovie"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:tabIndicator="@drawable/chip_tab_selected"
+                app:tabIndicatorColor="@color/green_500"
+                app:tabIndicatorGravity="stretch"
+                app:tabRippleColor="@android:color/transparent"
+                app:tabTextAppearance="@style/CustomTabLayoutTextAppearance"
+                app:tabTextColor="@color/selector_tab_text" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/vp_movie"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="@+id/ll_tab"
+            app:layout_constraintStart_toStartOf="@+id/ll_tab"
+            app:layout_constraintTop_toBottomOf="@+id/ll_tab" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.core.widget.NestedScrollView>

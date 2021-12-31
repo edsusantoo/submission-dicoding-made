@@ -1,7 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
-    id 'kotlin-android-extensions'
+    id 'kotlin-parcelize'
     id 'kotlin-kapt'
     id 'dagger.hilt.android.plugin'
 }
@@ -41,5 +41,9 @@ android {
 
 dependencies {
     implementation project(":core")
-    implementation fileTree(dir: "libs", include: ["*.jar"])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+
+    implementation 'com.github.smarteist:autoimageslider:1.4.0'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+
 }
