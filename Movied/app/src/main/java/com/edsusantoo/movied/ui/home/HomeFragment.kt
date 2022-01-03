@@ -41,7 +41,7 @@ class HomeFragment : Fragment() {
         if (activity != null) {
             val tabMovie = binding.tabMovie
             val vpMovie = binding.vpMovie
-            val adapter = MovieViewPagerAdapter(activity!!.supportFragmentManager, lifecycle)
+            val adapter = MovieViewPagerAdapter(childFragmentManager, lifecycle)
             vpMovie.adapter = adapter
             TabLayoutMediator(tabMovie, vpMovie) { tab, position ->
                 when (position) {

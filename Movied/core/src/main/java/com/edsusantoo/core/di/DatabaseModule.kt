@@ -3,6 +3,7 @@ package com.edsusantoo.core.di
 import android.content.Context
 import androidx.room.Room
 import com.edsusantoo.core.data.source.local.config.MoviedDatabase
+import com.edsusantoo.core.data.source.local.dao.CastDao
 import com.edsusantoo.core.data.source.local.dao.MovieDao
 import com.edsusantoo.core.data.source.local.dao.UserDao
 import dagger.Module
@@ -28,4 +29,7 @@ class DatabaseModule {
 
     @Provides
     fun provideUserDao(database: MoviedDatabase): UserDao = database.userDao()
+
+    @Provides
+    fun provideCastDao(database: MoviedDatabase):CastDao = database.castDao()
 }

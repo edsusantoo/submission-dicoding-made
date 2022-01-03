@@ -16,7 +16,7 @@ data class MovieEntity(
     var idMovie:String,
 
     @ColumnInfo(name = "backdrop_path")
-    var backdropPath:String,
+    var backdropPath:String?=null,
 
     @ColumnInfo(name = "budget")
     var budget:String?=null,
@@ -50,9 +50,6 @@ data class MovieEntity(
 
     @ColumnInfo(name = "vote_average")
     var voteAverage:String,
-
-    @ColumnInfo(name = "favorite")
-    var isFavorite:Boolean = false,
 
     //type movie : popular, up_coming, coming_soon
     @ColumnInfo(name = "type_movie")

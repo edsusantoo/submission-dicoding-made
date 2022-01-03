@@ -1,8 +1,13 @@
 package com.edsusantoo.core.utils
 
+import com.edsusantoo.core.data.source.local.entity.CastEntity
+import com.edsusantoo.core.data.source.local.entity.FavoriteEntity
 import com.edsusantoo.core.data.source.local.entity.MovieEntity
+import com.edsusantoo.core.data.source.remote.response.movie.cast.CastResponse
 import com.edsusantoo.core.data.source.remote.response.movie.detail.DetailMovieResponse
 import com.edsusantoo.core.data.source.remote.response.movie.list.ListMovieResponse
+import com.edsusantoo.core.domain.model.cast.Cast
+import com.edsusantoo.core.domain.model.favorite.Favorite
 import com.edsusantoo.core.domain.model.movie.Movie
 
 object DataMapper {
@@ -38,10 +43,30 @@ object DataMapper {
                 productionCompanies = it.productionCompanies,
                 budget = it.budget,
                 genres = it.genres,
-                isFavorite = it.isFavorite,
                 productionCountries = it.productionCountries,
                 runtime = it.runtime,
                 tagline = it.tagline
+            )
+        }
+
+    fun mapListMovieResponseToDomain(response:ListMovieResponse):List<Movie> =
+        response.results.map {
+            Movie(
+                idMovie = it.id.toString(),
+                backdropPath = it.backdropPath,
+                originalTitle = it.originalTitle,
+                overview = it.overview,
+                posterPath = it.posterPath,
+                releaseDate = it.releaseDate,
+                voteAverage = it.voteAverage.toString(),
+                typeMovie = "",
+                productionCompanies = "",
+                budget = "",
+                genres = "",
+                isFavorite = false,
+                productionCountries = "",
+                runtime = "",
+                tagline = ""
             )
         }
 
@@ -63,6 +88,33 @@ object DataMapper {
             tagline = detail.tagline
         )
 
+    fun mapCastResponseToEntities(response:CastResponse):List<CastEntity> {
+        val castEntityArray = ArrayList<CastEntity>()
+        response.cast.map {
+            val cast = CastEntity(
+                idCast = it.id.toString(),
+                idMovie = response.id.toString(),
+                originalName = it.originalName,
+                character = it.character,
+                profilePath = it.profilePath
+            )
+            castEntityArray.add(cast)
+        }
+        return castEntityArray
+    }
+
+    fun mapListCastEntitiesToDomain(castEntity: List<CastEntity>):List<Cast> =
+        castEntity.map {
+            Cast(
+                idCast = it.idCast,
+                idMovie = it.idMovie,
+                originalName = it.originalName,
+                character = it.character,
+                profilePath = it.profilePath
+            )
+        }
+
+
     fun mapMovieDomainToEntities(domain:Movie):MovieEntity =
         MovieEntity(
             idMovie = domain.idMovie,
@@ -76,7 +128,6 @@ object DataMapper {
             productionCompanies = domain.productionCompanies,
             budget = domain.budget,
             genres = domain.genres,
-            isFavorite = domain.isFavorite,
             productionCountries = domain.productionCountries,
             runtime = domain.runtime,
             tagline = domain.tagline
@@ -95,9 +146,15 @@ object DataMapper {
             productionCompanies = movieEntity.productionCompanies,
             budget = movieEntity.budget,
             genres = movieEntity.genres,
-            isFavorite = movieEntity.isFavorite,
             productionCountries = movieEntity.productionCountries,
             runtime = movieEntity.runtime,
             tagline = movieEntity.tagline
         )
+
+    fun mapFavoriteMovieDomainToEntities(favorite: Favorite):FavoriteEntity =
+        FavoriteEntity(
+            idFavorite = favorite.idFavorite,
+            isFavorite = favorite.isFavorite
+        )
+
 }

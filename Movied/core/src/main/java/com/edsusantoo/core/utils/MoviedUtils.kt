@@ -5,6 +5,8 @@ import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.os.Build
 import com.google.gson.Gson
+import java.text.SimpleDateFormat
+import java.util.*
 
 object MoviedUtils {
 
@@ -50,5 +52,11 @@ object MoviedUtils {
 
     fun convertToStringJson(data:Any):String{
         return Gson().toJson(data)
+    }
+
+    fun convertDate(data: String?, format: String): String {
+        val parser = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+        val formatter = SimpleDateFormat(format,Locale.getDefault())
+        return formatter.format(parser.parse(data!!)!!)
     }
 }

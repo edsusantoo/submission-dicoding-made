@@ -1,9 +1,9 @@
 package com.edsusantoo.core.data.source.remote.config
 
+import com.edsusantoo.core.data.source.remote.response.movie.cast.CastResponse
 import com.edsusantoo.core.data.source.remote.response.movie.detail.DetailMovieResponse
 import com.edsusantoo.core.data.source.remote.response.movie.list.ListMovieResponse
 import io.reactivex.Flowable
-import io.reactivex.Single
 import retrofit2.http.GET
 import retrofit2.http.Path
 
@@ -19,6 +19,16 @@ interface ApiService {
 
     @GET("{id_movie}")
     fun getDetailMovie(
-        @Path("id") id:String
-    ):Single<DetailMovieResponse>
+        @Path("id_movie") id:String
+    ):Flowable<DetailMovieResponse>
+
+    @GET("{id_movie}/credits")
+    fun getCastMovie(
+        @Path("id_movie") id:String
+    ):Flowable<CastResponse>
+
+    @GET("{id_movie}/similar")
+    fun getRelatedMovie(
+        @Path("id_movie") id:String
+    ):Flowable<ListMovieResponse>
 }

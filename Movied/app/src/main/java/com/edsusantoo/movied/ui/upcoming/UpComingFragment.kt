@@ -1,5 +1,6 @@
 package com.edsusantoo.movied.ui.upcoming
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -10,8 +11,11 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import com.edsusantoo.core.data.Resource
+import com.edsusantoo.core.domain.model.movie.Movie
+import com.edsusantoo.core.utils.Constants
 import com.edsusantoo.movied.databinding.FragmentUpComingBinding
 import com.edsusantoo.movied.ui.adapter.MovieAnyAdapter
+import com.edsusantoo.movied.ui.detailmovie.DetailMovieActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -49,7 +53,14 @@ class UpComingFragment : Fragment() {
                             binding.loading.isVisible = false
                             binding.rvUpComing.layoutManager =
                                 GridLayoutManager(requireContext(), 2)
-                            binding.rvUpComing.adapter = MovieAnyAdapter(movie.data)
+                            binding.rvUpComing.adapter = MovieAnyAdapter(movie.data, object : MovieAnyAdapter.MovieAnyListener{
+                                override fun onClickListener(data: Movie,position:Int) {
+                                    val intent = Intent(activity, DetailMovieActivity::class.java)
+                                    intent.putExtra(Constants.INTENT_DATA_PARCELABLE,movie.data?.get(position))
+                                    startActivity(intent)
+                                }
+
+                            })
                         }
                         is Resource.Error -> {
                             binding.loading.isVisible = false

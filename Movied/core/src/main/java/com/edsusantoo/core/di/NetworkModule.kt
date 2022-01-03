@@ -6,6 +6,7 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import io.reactivex.disposables.CompositeDisposable
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -51,5 +52,8 @@ class NetworkModule {
             .build()
         return retrofit.create(ApiService::class.java)
     }
+
+    @Provides
+    fun provideCompositeDisposable():CompositeDisposable = CompositeDisposable()
 
 }

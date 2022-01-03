@@ -9,7 +9,7 @@ import com.edsusantoo.core.domain.model.movie.Movie
 import com.edsusantoo.core.utils.Constants
 import com.edsusantoo.movied.databinding.ItemMovie1Binding
 
-class MovieAnyAdapter(private val list: List<Movie>?) :
+class MovieAnyAdapter(private val list: List<Movie>?,private val movieAnyListener: MovieAnyListener) :
     RecyclerView.Adapter<MovieAnyAdapter.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieAnyAdapter.ViewHolder {
         val view = ItemMovie1Binding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -30,6 +30,11 @@ class MovieAnyAdapter(private val list: List<Movie>?) :
             } else {
                 it.circularRate.progress = 0
             }
+
+        }
+
+        holder.itemView.setOnClickListener {
+            list?.get(position)?.let { it1 -> movieAnyListener.onClickListener(it1,position) }
         }
     }
 
@@ -41,6 +46,10 @@ class MovieAnyAdapter(private val list: List<Movie>?) :
                 0
         else
             0
+    }
+
+    interface MovieAnyListener {
+        fun onClickListener(data : Movie,position: Int)
     }
 
     inner class ViewHolder(val binding: ItemMovie1Binding) : RecyclerView.ViewHolder(binding.root)

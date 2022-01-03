@@ -8,7 +8,7 @@ data class Movie(
 
     val idMovie:String,
 
-    val backdropPath:String,
+    val backdropPath:String?=null,
 
     val budget:String?=null,
 
@@ -32,7 +32,7 @@ data class Movie(
 
     val voteAverage:String,
 
-    val isFavorite:Boolean = false,
+    val isFavorite:Boolean?=null,
 
     //type movie : popular, up_coming, coming_soon
     val typeMovie:String

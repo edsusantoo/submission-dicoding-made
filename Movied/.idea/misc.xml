@@ -3,7 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/edsusantoo/AndroidStudioProjects/Dicoding/MADE/#Submission/submission-dicoding-made/Movied/app/src/main/res/drawable/bg_back.xml" value="0.22552083333333334" />
         <entry key="..\:/Users/edsusantoo/AndroidStudioProjects/Dicoding/MADE/#Submission/submission-dicoding-made/Movied/app/src/main/res/drawable/bg_bottom_nav.xml" value="0.22552083333333334" />
+        <entry key="..\:/Users/edsusantoo/AndroidStudioProjects/Dicoding/MADE/#Submission/submission-dicoding-made/Movied/app/src/main/res/drawable/bg_image_detail_backdrop_path.xml" value="0.22552083333333334" />
         <entry key="..\:/Users/edsusantoo/AndroidStudioProjects/Dicoding/MADE/#Submission/submission-dicoding-made/Movied/app/src/main/res/drawable/bg_tab_movie.xml" value="0.22552083333333334" />
         <entry key="..\:/Users/edsusantoo/AndroidStudioProjects/Dicoding/MADE/#Submission/submission-dicoding-made/Movied/app/src/main/res/drawable/chip_tab_selected.xml" value="0.22552083333333334" />
         <entry key="..\:/Users/edsusantoo/AndroidStudioProjects/Dicoding/MADE/#Submission/submission-dicoding-made/Movied/app/src/main/res/drawable/chip_tab_unselected.xml" value="0.22552083333333334" />
@@ -11,9 +13,12 @@
         <entry key="..\:/Users/edsusantoo/AndroidStudioProjects/Dicoding/MADE/#Submission/submission-dicoding-made/Movied/app/src/main/res/drawable/ic_eye_hide.xml" value="0.22552083333333334" />
         <entry key="..\:/Users/edsusantoo/AndroidStudioProjects/Dicoding/MADE/#Submission/submission-dicoding-made/Movied/app/src/main/res/drawable/ic_facebook.xml" value="0.22552083333333334" />
         <entry key="..\:/Users/edsusantoo/AndroidStudioProjects/Dicoding/MADE/#Submission/submission-dicoding-made/Movied/app/src/main/res/drawable/ic_google_gmail.xml" value="0.22552083333333334" />
+        <entry key="..\:/Users/edsusantoo/AndroidStudioProjects/Dicoding/MADE/#Submission/submission-dicoding-made/Movied/app/src/main/res/drawable/selector_favorite.xml" value="0.22552083333333334" />
         <entry key="..\:/Users/edsusantoo/AndroidStudioProjects/Dicoding/MADE/#Submission/submission-dicoding-made/Movied/app/src/main/res/drawable/selector_show_hide_password.xml" value="0.22552083333333334" />
         <entry key="..\:/Users/edsusantoo/AndroidStudioProjects/Dicoding/MADE/#Submission/submission-dicoding-made/Movied/app/src/main/res/drawable/selector_tab_movie.xml" value="0.22552083333333334" />
         <entry key="..\:/Users/edsusantoo/AndroidStudioProjects/Dicoding/MADE/#Submission/submission-dicoding-made/Movied/app/src/main/res/drawable/tab_ripple.xml" value="0.22552083333333334" />
+        <entry key="..\:/Users/edsusantoo/AndroidStudioProjects/Dicoding/MADE/#Submission/submission-dicoding-made/Movied/app/src/main/res/layout/activity_detail.xml" value="0.25" />
+        <entry key="..\:/Users/edsusantoo/AndroidStudioProjects/Dicoding/MADE/#Submission/submission-dicoding-made/Movied/app/src/main/res/layout/activity_detail_movie.xml" value="0.16" />
         <entry key="..\:/Users/edsusantoo/AndroidStudioProjects/Dicoding/MADE/#Submission/submission-dicoding-made/Movied/app/src/main/res/layout/activity_login.xml" value="0.22" />
         <entry key="..\:/Users/edsusantoo/AndroidStudioProjects/Dicoding/MADE/#Submission/submission-dicoding-made/Movied/app/src/main/res/layout/activity_main.xml" value="0.22" />
         <entry key="..\:/Users/edsusantoo/AndroidStudioProjects/Dicoding/MADE/#Submission/submission-dicoding-made/Movied/app/src/main/res/layout/activity_register.xml" value="0.209375" />
@@ -24,7 +29,9 @@
         <entry key="..\:/Users/edsusantoo/AndroidStudioProjects/Dicoding/MADE/#Submission/submission-dicoding-made/Movied/app/src/main/res/layout/fragment_profile.xml" value="0.209375" />
         <entry key="..\:/Users/edsusantoo/AndroidStudioProjects/Dicoding/MADE/#Submission/submission-dicoding-made/Movied/app/src/main/res/layout/fragment_search.xml" value="0.209375" />
         <entry key="..\:/Users/edsusantoo/AndroidStudioProjects/Dicoding/MADE/#Submission/submission-dicoding-made/Movied/app/src/main/res/layout/fragment_up_coming.xml" value="0.1953125" />
-        <entry key="..\:/Users/edsusantoo/AndroidStudioProjects/Dicoding/MADE/#Submission/submission-dicoding-made/Movied/app/src/main/res/layout/item_movie_1.xml" value="0.9" />
+        <entry key="..\:/Users/edsusantoo/AndroidStudioProjects/Dicoding/MADE/#Submission/submission-dicoding-made/Movied/app/src/main/res/layout/item_cast.xml" value="0.209375" />
+        <entry key="..\:/Users/edsusantoo/AndroidStudioProjects/Dicoding/MADE/#Submission/submission-dicoding-made/Movied/app/src/main/res/layout/item_movie_1.xml" value="0.18" />
+        <entry key="..\:/Users/edsusantoo/AndroidStudioProjects/Dicoding/MADE/#Submission/submission-dicoding-made/Movied/app/src/main/res/layout/item_movie_2.xml" value="0.209375" />
         <entry key="..\:/Users/edsusantoo/AndroidStudioProjects/Dicoding/MADE/#Submission/submission-dicoding-made/Movied/app/src/main/res/layout/item_slider_image.xml" value="0.1953125" />
         <entry key="..\:/Users/edsusantoo/AndroidStudioProjects/Dicoding/MADE/#Submission/submission-dicoding-made/Movied/app/src/main/res/layout/layout_action_bar.xml" value="0.22" />
         <entry key="..\:/Users/edsusantoo/AndroidStudioProjects/Dicoding/MADE/#Submission/submission-dicoding-made/Movied/app/src/main/res/menu/menu_bottom_nav.xml" value="0.209375" />
