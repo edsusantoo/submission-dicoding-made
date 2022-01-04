@@ -3,7 +3,6 @@ package com.edsusantoo.core.data
 import android.content.Context
 import android.util.Log
 import com.edsusantoo.core.data.source.local.LocalDataSource
-import com.edsusantoo.core.data.source.local.entity.join.MovieFavorite
 import com.edsusantoo.core.data.source.remote.RemoteDataSource
 import com.edsusantoo.core.data.source.remote.config.ApiResponse
 import com.edsusantoo.core.data.source.remote.response.movie.cast.CastResponse
@@ -12,6 +11,7 @@ import com.edsusantoo.core.data.source.remote.response.movie.list.ListMovieRespo
 import com.edsusantoo.core.domain.model.cast.Cast
 import com.edsusantoo.core.domain.model.favorite.Favorite
 import com.edsusantoo.core.domain.model.movie.Movie
+import com.edsusantoo.core.domain.model.moviefavorite.MovieFavorite
 import com.edsusantoo.core.domain.repository.IMoviedRepository
 import com.edsusantoo.core.utils.AppExecutors
 import com.edsusantoo.core.utils.Constants
@@ -116,7 +116,7 @@ class MoviedRepository @Inject constructor(
                     is ApiResponse.Error -> {
                         result.onNext(Resource.Error(response.error))
                     }
-                    else -> Log.e("Network Error","ERROR YA GES YA!!")
+                    else -> Log.e("Network Error", "ERROR YA GES YA!!")
                 }
 
             }
@@ -124,24 +124,14 @@ class MoviedRepository @Inject constructor(
         return result.toFlowable(BackpressureStrategy.BUFFER)
     }
 
-    override fun setFavoriteMovie(favorite: Favorite){
-        val mapper = DataMapper.mapFavoriteMovieDomainToEntities(favorite)
-        appExecutors.diskIO().execute {  localDataSource.setFavoriteMovie(mapper) }
+    override fun setFavoriteMovie(favorite: Favorite) {
+        val mapper = DataMapper.mapFavoriteDomainToEntities(favorite)
+        appExecutors.diskIO().execute { localDataSource.setFavoriteMovie(mapper) }
     }
 
-    override fun getLocalFavoriteMovie(id: String): Flowable<Resource<MovieFavorite>> {
-        val result = PublishSubject.create<Resource<MovieFavorite>>()
-        val local = localDataSource.getFavoriteDetailMovie(id)
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .doOnComplete { compositeDisposableLocal.dispose() }
-            .subscribe({ movie ->
-                result.onNext(Resource.Success(movie))
-            }, { error ->
-                result.onNext(Resource.Error(error.message))
-            })
-        compositeDisposableLocal.add(local)
-        return result.toFlowable(BackpressureStrategy.BUFFER)
+    override fun getLocalDetailFavoriteMovie(id: String): Flowable<MovieFavorite> {
+        return localDataSource.getFavoriteDetailMovie(id)
+            .map { DataMapper.mapMovieFavoriteEntitiesToDomain(it) }
     }
 
     override fun searchMovie(query: String): Flowable<Resource<List<Movie>>> {
@@ -168,6 +158,11 @@ class MoviedRepository @Inject constructor(
             }
 
         }.asFlowable()
+    }
+
+    override fun getLocalFavoriteMovie(): Flowable<List<MovieFavorite>> {
+        return localDataSource.getFavoriteMovie()
+            .map { DataMapper.mapListMovieFavoriteEntitiesToDomain(it) }
     }
 
     private fun setMovieNetworkBoundResource(typeMovie: String): Flowable<Resource<List<Movie>>> {

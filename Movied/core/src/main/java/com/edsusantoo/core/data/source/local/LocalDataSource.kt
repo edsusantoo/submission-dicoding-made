@@ -37,20 +37,25 @@ class LocalDataSource @Inject constructor(
     fun updateDetailMovie(movieEntity:MovieEntity,movieResponse: DetailMovieResponse):Completable{
         movieEntity.budget = movieResponse.budget.toString()
         movieEntity.genres = MoviedUtils.convertToStringJson(movieResponse.genres)
-        movieEntity.productionCompanies = MoviedUtils.convertToStringJson(movieResponse.productionCompanies)
-        movieEntity.productionCountries = MoviedUtils.convertToStringJson(movieResponse.productionCountries)
+        movieEntity.productionCompanies =
+            MoviedUtils.convertToStringJson(movieResponse.productionCompanies)
+        movieEntity.productionCountries =
+            MoviedUtils.convertToStringJson(movieResponse.productionCountries)
         movieEntity.runtime = movieResponse.runtime.toString()
         movieEntity.tagline = movieResponse.tagline
         return movieDao.updateMovie(movieEntity)
     }
 
-    fun getFavoriteDetailMovie(idMovie: String):Flowable<MovieFavorite> = movieDao.getFavoriteDetailMovie(idMovie)
+    fun getFavoriteDetailMovie(idMovie: String): Flowable<MovieFavorite> =
+        movieDao.getFavoriteDetailMovie(idMovie)
 
-    fun getCastMovie(idMovie:String):Flowable<List<CastEntity>> = castDao.getCastMovie(idMovie)
+    fun getFavoriteMovie(): Flowable<List<MovieFavorite>> = movieDao.getFavoriteMovie()
 
-    fun insertCast(cast:List<CastEntity>):Completable = castDao.insertCast(cast)
+    fun getCastMovie(idMovie: String): Flowable<List<CastEntity>> = castDao.getCastMovie(idMovie)
 
-    fun getUser(username:String): Single<UserEntity> = userDao.getUser(username)
+    fun insertCast(cast: List<CastEntity>): Completable = castDao.insertCast(cast)
 
-    fun insertUser(userEntity: UserEntity):Completable = userDao.insert(userEntity)
+    fun getUser(username: String): Single<UserEntity> = userDao.getUser(username)
+
+    fun insertUser(userEntity: UserEntity): Completable = userDao.insert(userEntity)
 }

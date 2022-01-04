@@ -25,6 +25,6 @@ class DetailMovieViewModel @Inject constructor(
     fun setFavorite(favorite: Favorite) = movieUseCase.setFavoriteMovie(favorite)
 
     fun getLocalFavorite(id:String) =
-        LiveDataReactiveStreams.fromPublisher(movieUseCase.getLocalFavoriteMovie(id))
+        LiveDataReactiveStreams.fromPublisher(movieUseCase.getLocalDetailFavoriteMovie(id))
 
 }

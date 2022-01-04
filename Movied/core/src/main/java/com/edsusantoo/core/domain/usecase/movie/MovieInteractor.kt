@@ -1,9 +1,9 @@
 package com.edsusantoo.core.domain.usecase.movie
 
 import com.edsusantoo.core.data.Resource
-import com.edsusantoo.core.data.source.local.entity.join.MovieFavorite
 import com.edsusantoo.core.domain.model.favorite.Favorite
 import com.edsusantoo.core.domain.model.movie.Movie
+import com.edsusantoo.core.domain.model.moviefavorite.MovieFavorite
 import com.edsusantoo.core.domain.repository.IMoviedRepository
 import io.reactivex.Flowable
 import javax.inject.Inject
@@ -24,11 +24,14 @@ class MovieInteractor @Inject constructor(private val moviedRepository: IMoviedR
     override fun setFavoriteMovie(favorite: Favorite) =
         moviedRepository.setFavoriteMovie(favorite)
 
-    override fun getLocalFavoriteMovie(id: String): Flowable<Resource<MovieFavorite>> =
-        moviedRepository.getLocalFavoriteMovie(id)
+    override fun getLocalDetailFavoriteMovie(id: String): Flowable<MovieFavorite> =
+        moviedRepository.getLocalDetailFavoriteMovie(id)
 
     override fun searchMovie(query: String): Flowable<Resource<List<Movie>>> =
         moviedRepository.searchMovie(query)
+
+    override fun getLocalFavoriteMovie(): Flowable<List<MovieFavorite>> =
+        moviedRepository.getLocalFavoriteMovie()
 
 
 }

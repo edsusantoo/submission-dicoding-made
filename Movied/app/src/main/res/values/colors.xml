@@ -17,7 +17,9 @@
     <color name="black_60">#99000000</color>
     <color name="blue_facebook">#385C8E</color>
     <color name="blue_dark_400">#211F30</color>
+    <color name="blue_dark_900">#120F2C</color>
     <color name="white_50">#80FFFFFF</color>
     <color name="white_BBB">#BBBBBB</color>
     <color name="grey_76">#767680</color>
+    <color name="grey_2B">#2B2B2B</color>
 </resources>

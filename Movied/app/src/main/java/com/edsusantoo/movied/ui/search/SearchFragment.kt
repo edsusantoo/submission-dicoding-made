@@ -130,4 +130,9 @@ class SearchFragment : Fragment() {
     companion object {
         fun getInstance() = SearchFragment()
     }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 }

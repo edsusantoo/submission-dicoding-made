@@ -10,6 +10,9 @@ object Constants {
     const val TYPE_MOVIE_SEARCH = "movie_search"
     const val API_KEY_MOVIE = "872528b1cb06cd60ecea1a8870cd50d3"
     const val INTENT_DATA_PARCELABLE = "intent_data_parcelable"
+    const val INTENT_DATA_TYPE = "intent_data_type"
+    const val TYPE_DETAIL_MOVIE = "movie"
+    const val TYPE_DETAIL_FAVORITE_MOVIE = "favorite_movie"
 
 
 }

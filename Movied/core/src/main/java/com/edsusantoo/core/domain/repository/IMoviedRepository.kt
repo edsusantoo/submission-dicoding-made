@@ -1,10 +1,10 @@
 package com.edsusantoo.core.domain.repository
 
 import com.edsusantoo.core.data.Resource
-import com.edsusantoo.core.data.source.local.entity.join.MovieFavorite
 import com.edsusantoo.core.domain.model.cast.Cast
 import com.edsusantoo.core.domain.model.favorite.Favorite
 import com.edsusantoo.core.domain.model.movie.Movie
+import com.edsusantoo.core.domain.model.moviefavorite.MovieFavorite
 import io.reactivex.Flowable
 
 interface IMoviedRepository {
@@ -13,6 +13,7 @@ interface IMoviedRepository {
     fun getCastMovie(id:String):Flowable<Resource<List<Cast>>>
     fun getRelatedMovie(id:String):Flowable<Resource<List<Movie>>>
     fun setFavoriteMovie(favorite: Favorite)
-    fun getLocalFavoriteMovie(id: String): Flowable<Resource<MovieFavorite>>
+    fun getLocalDetailFavoriteMovie(id: String): Flowable<MovieFavorite>
     fun searchMovie(query: String): Flowable<Resource<List<Movie>>>
+    fun getLocalFavoriteMovie(): Flowable<List<MovieFavorite>>
 }

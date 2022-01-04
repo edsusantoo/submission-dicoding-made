@@ -3,12 +3,14 @@ package com.edsusantoo.core.utils
 import com.edsusantoo.core.data.source.local.entity.CastEntity
 import com.edsusantoo.core.data.source.local.entity.FavoriteEntity
 import com.edsusantoo.core.data.source.local.entity.MovieEntity
+import com.edsusantoo.core.data.source.local.entity.join.MovieFavorite
 import com.edsusantoo.core.data.source.remote.response.movie.cast.CastResponse
 import com.edsusantoo.core.data.source.remote.response.movie.detail.DetailMovieResponse
 import com.edsusantoo.core.data.source.remote.response.movie.list.ListMovieResponse
 import com.edsusantoo.core.domain.model.cast.Cast
 import com.edsusantoo.core.domain.model.favorite.Favorite
 import com.edsusantoo.core.domain.model.movie.Movie
+import com.edsusantoo.core.domain.model.moviefavorite.MovieFavorite as MovieFavoriteDomain
 
 object DataMapper {
     fun mapListMovieResponseToEntities(response:ListMovieResponse,type:String):List<MovieEntity>{
@@ -151,10 +153,50 @@ object DataMapper {
             tagline = movieEntity.tagline
         )
 
-    fun mapFavoriteMovieDomainToEntities(favorite: Favorite):FavoriteEntity =
+    fun mapFavoriteDomainToEntities(favorite: Favorite): FavoriteEntity =
         FavoriteEntity(
             idFavorite = favorite.idFavorite,
             isFavorite = favorite.isFavorite
         )
+
+    fun mapMovieFavoriteEntitiesToDomain(movieFavorite: MovieFavorite) =
+        MovieFavoriteDomain(
+            idMovie = movieFavorite.idMovie,
+            backdropPath = movieFavorite.backdropPath,
+            originalTitle = movieFavorite.originalTitle,
+            overview = movieFavorite.overview,
+            posterPath = movieFavorite.posterPath,
+            releaseDate = movieFavorite.releaseDate,
+            voteAverage = movieFavorite.voteAverage,
+            typeMovie = movieFavorite.typeMovie,
+            productionCompanies = movieFavorite.productionCompanies,
+            budget = movieFavorite.budget,
+            genres = movieFavorite.genres,
+            isFavorite = movieFavorite.isFavorite,
+            productionCountries = movieFavorite.productionCountries,
+            runtime = movieFavorite.runtime,
+            tagline = movieFavorite.tagline
+        )
+
+    fun mapListMovieFavoriteEntitiesToDomain(movieFavorite: List<MovieFavorite>) =
+        movieFavorite.map {
+            MovieFavoriteDomain(
+                idMovie = it.idMovie,
+                backdropPath = it.backdropPath,
+                originalTitle = it.originalTitle,
+                overview = it.overview,
+                posterPath = it.posterPath,
+                releaseDate = it.releaseDate,
+                voteAverage = it.voteAverage,
+                typeMovie = it.typeMovie,
+                productionCompanies = it.productionCompanies,
+                budget = it.budget,
+                genres = it.genres,
+                isFavorite = it.isFavorite,
+                productionCountries = it.productionCountries,
+                runtime = it.runtime,
+                tagline = it.tagline
+            )
+        }
 
 }

@@ -21,7 +21,7 @@ interface MovieDao {
     @Query("SELECT * FROM movie WHERE id_movie = :idMovie")
     fun getDetailMovie(idMovie: String): Flowable<MovieEntity>
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun insertMovie(movie: List<MovieEntity>): Completable
 
     @Update
