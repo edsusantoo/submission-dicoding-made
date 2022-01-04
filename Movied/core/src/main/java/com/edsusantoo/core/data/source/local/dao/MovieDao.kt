@@ -15,6 +15,8 @@ interface MovieDao {
     @Query("SELECT * FROM movie WHERE type_movie = :typeMovie")
     fun getAllMovieWhereType(typeMovie: String): Flowable<List<MovieEntity>>
 
+    @Query("SELECT * FROM movie WHERE original_title LIKE '%' || :originalTitle || '%'")
+    fun searchMovie(originalTitle: String): Flowable<List<MovieEntity>>
 
     @Query("SELECT * FROM movie WHERE id_movie = :idMovie")
     fun getDetailMovie(idMovie: String): Flowable<MovieEntity>
@@ -23,7 +25,7 @@ interface MovieDao {
     fun insertMovie(movie: List<MovieEntity>): Completable
 
     @Update
-    fun updateMovie(movie:MovieEntity):Completable
+    fun updateMovie(movie: MovieEntity): Completable
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertFavorite(favoriteEntity: FavoriteEntity)

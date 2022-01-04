@@ -11,8 +11,4 @@ import javax.inject.Inject
 class HomeViewModel @Inject constructor(movieUseCase: MovieUseCase) : ViewModel() {
     val moviePopular =
         LiveDataReactiveStreams.fromPublisher(movieUseCase.getMovies(Constants.TYPE_MOVIE_POPULAR))
-    val movieNowPlaying =
-        LiveDataReactiveStreams.fromPublisher(movieUseCase.getMovies(Constants.TYPE_MOVIE_NOW_PLAYING))
-    val movieComingSoon =
-        LiveDataReactiveStreams.fromPublisher(movieUseCase.getMovies(Constants.TYPE_MOVIE_UPCOMING))
 }

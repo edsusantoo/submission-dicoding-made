@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.edsusantoo.core.domain.model.cast.Cast
 import com.edsusantoo.core.utils.Constants
+import com.edsusantoo.movied.R
 import com.edsusantoo.movied.databinding.ItemCastBinding
 
 class CastAdapter(private val list:List<Cast>?) : RecyclerView.Adapter<CastAdapter.ViewHolder>() {
@@ -16,10 +17,13 @@ class CastAdapter(private val list:List<Cast>?) : RecyclerView.Adapter<CastAdapt
 
     override fun onBindViewHolder(holder: CastAdapter.ViewHolder, position: Int) {
         holder.binding.let {
+
             Glide.with(it.root)
                 .load(Constants.BASE_URL_IMAGE_MOVIE_W92 + list?.get(position)?.profilePath)
+                .error(R.drawable.profile_template)
                 .fitCenter()
                 .into(it.imgCast)
+
             it.tvRealName.text = list?.get(position)?.originalName
             it.tvNameMovie.text = list?.get(position)?.character
         }
@@ -28,7 +32,10 @@ class CastAdapter(private val list:List<Cast>?) : RecyclerView.Adapter<CastAdapt
     override fun getItemCount(): Int {
         return if (list != null)
             if (list.isNotEmpty())
-                5
+                if (list.count() >= 5)
+                    5
+                else
+                    list.size
             else
                 0
         else

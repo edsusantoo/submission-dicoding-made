@@ -31,4 +31,6 @@
     <string name="overview">Overview</string>
     <string name="cast">Cast</string>
     <string name="related_movie">Related Movie</string>
+    <string name="find_your_movie">Find your movie</string>
+    <string name="movie_not_found">Movie not found</string>
 </resources>

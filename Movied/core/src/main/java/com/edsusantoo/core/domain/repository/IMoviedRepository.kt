@@ -13,5 +13,6 @@ interface IMoviedRepository {
     fun getCastMovie(id:String):Flowable<Resource<List<Cast>>>
     fun getRelatedMovie(id:String):Flowable<Resource<List<Movie>>>
     fun setFavoriteMovie(favorite: Favorite)
-    fun getLocalFavoriteMovie(id:String):Flowable<Resource<MovieFavorite>>
+    fun getLocalFavoriteMovie(id: String): Flowable<Resource<MovieFavorite>>
+    fun searchMovie(query: String): Flowable<Resource<List<Movie>>>
 }

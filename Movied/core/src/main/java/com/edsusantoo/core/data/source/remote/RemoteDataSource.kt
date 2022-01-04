@@ -103,13 +103,28 @@ class RemoteDataSource @Inject constructor(private val apiService: ApiService) {
         client.subscribeOn(Schedulers.computation())
             .observeOn(AndroidSchedulers.mainThread())
             .take(1)
-            .subscribe({response ->
-                result.onNext(if(response!=null) ApiResponse.Success(response) else ApiResponse.Empty)
-            },{error ->
+            .subscribe({ response ->
+                result.onNext(if (response != null) ApiResponse.Success(response) else ApiResponse.Empty)
+            }, { error ->
                 result.onNext(ApiResponse.Error(error.message.toString()))
-                Log.e("Remote Data Source",error.toString())
+                Log.e("Remote Data Source", error.toString())
             })
 
+        return result.toFlowable(BackpressureStrategy.BUFFER)
+    }
+
+    fun searchMovie(query: String): Flowable<ApiResponse<ListMovieResponse>> {
+        val result = PublishSubject.create<ApiResponse<ListMovieResponse>>()
+        val client = apiService.searchMovie(query)
+        client.subscribeOn(Schedulers.computation())
+            .observeOn(AndroidSchedulers.mainThread())
+            .take(1)
+            .subscribe({ response ->
+                result.onNext(if (response != null) ApiResponse.Success(response) else ApiResponse.Empty)
+            }, { error ->
+                result.onNext(ApiResponse.Error(error.message.toString()))
+                Log.e("Remote Data Source", error.toString())
+            })
         return result.toFlowable(BackpressureStrategy.BUFFER)
     }
 }

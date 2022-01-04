@@ -16,43 +16,43 @@ data class MovieEntity(
     var idMovie:String,
 
     @ColumnInfo(name = "backdrop_path")
-    var backdropPath:String?=null,
+    var backdropPath: String? = null,
 
     @ColumnInfo(name = "budget")
-    var budget:String?=null,
+    var budget: String? = null,
 
     @ColumnInfo(name = "genres")
-    var genres:String?=null,
+    var genres: String? = null,
 
     @ColumnInfo(name = "original_title")
-    var originalTitle:String,
+    var originalTitle: String? = null,
 
     @ColumnInfo(name = "overview")
-    var overview:String,
+    var overview: String? = null,
 
     @ColumnInfo(name = "poster_path")
-    var posterPath:String,
+    var posterPath: String? = null,
 
     @ColumnInfo(name = "production_companies")
-    var productionCompanies:String?=null,
+    var productionCompanies: String? = null,
 
     @ColumnInfo(name = "production_countries")
-    var productionCountries:String?=null,
+    var productionCountries: String? = null,
 
     @ColumnInfo(name = "release_date")
-    var releaseDate:String,
+    var releaseDate: String? = null,
 
     @ColumnInfo(name = "runtime")
-    var runtime:String?=null,
+    var runtime: String? = null,
 
     @ColumnInfo(name = "tagline")
-    var tagline:String?=null,
+    var tagline: String? = null,
 
     @ColumnInfo(name = "vote_average")
-    var voteAverage:String,
+    var voteAverage: String? = null,
 
     //type movie : popular, up_coming, coming_soon
     @ColumnInfo(name = "type_movie")
-    var typeMovie:String
+    var typeMovie: String? = null
 
 ):Parcelable

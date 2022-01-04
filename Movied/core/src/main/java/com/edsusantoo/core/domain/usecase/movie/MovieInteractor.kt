@@ -24,8 +24,11 @@ class MovieInteractor @Inject constructor(private val moviedRepository: IMoviedR
     override fun setFavoriteMovie(favorite: Favorite) =
         moviedRepository.setFavoriteMovie(favorite)
 
-    override fun getLocalFavoriteMovie(id: String): Flowable<Resource<MovieFavorite>>  =
+    override fun getLocalFavoriteMovie(id: String): Flowable<Resource<MovieFavorite>> =
         moviedRepository.getLocalFavoriteMovie(id)
+
+    override fun searchMovie(query: String): Flowable<Resource<List<Movie>>> =
+        moviedRepository.searchMovie(query)
 
 
 }

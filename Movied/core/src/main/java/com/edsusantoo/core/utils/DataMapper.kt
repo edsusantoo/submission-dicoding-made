@@ -32,7 +32,7 @@ object DataMapper {
     fun mapListMovieEntitiesToDomain(movieEntity: List<MovieEntity>):List<Movie> =
         movieEntity.map {
             Movie(
-                idMovie = it.idMovie.toString(),
+                idMovie = it.idMovie,
                 backdropPath = it.backdropPath,
                 originalTitle = it.originalTitle,
                 overview = it.overview,

@@ -134,18 +134,44 @@ class MoviedRepository @Inject constructor(
         val local = localDataSource.getFavoriteDetailMovie(id)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .doOnComplete{compositeDisposableLocal.dispose()}
-            .subscribe({movie->
+            .doOnComplete { compositeDisposableLocal.dispose() }
+            .subscribe({ movie ->
                 result.onNext(Resource.Success(movie))
-            },{error ->
+            }, { error ->
                 result.onNext(Resource.Error(error.message))
             })
         compositeDisposableLocal.add(local)
         return result.toFlowable(BackpressureStrategy.BUFFER)
     }
 
-    private fun setMovieNetworkBoundResource(typeMovie:String):Flowable<Resource<List<Movie>>>{
-        return object : NetworkBoundResource<List<Movie>,ListMovieResponse>(){
+    override fun searchMovie(query: String): Flowable<Resource<List<Movie>>> {
+        return object : NetworkBoundResource<List<Movie>, ListMovieResponse>() {
+            override fun loadFromDB(): Flowable<List<Movie>> {
+                return localDataSource.searchMovie(query)
+                    .map { DataMapper.mapListMovieEntitiesToDomain(it) }
+            }
+
+            override fun shouldFetch(data: List<Movie>?): Boolean {
+                return MoviedUtils.checkForInternet(context)
+            }
+
+            override fun createCallNetwork(): Flowable<ApiResponse<ListMovieResponse>> {
+                return remoteDataSource.searchMovie(query)
+            }
+
+            override fun saveCallResultToDB(data: ListMovieResponse) {
+                val mapper = DataMapper.mapListMovieResponseToEntities(data, "")
+                localDataSource.insertMovie(mapper)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe()
+            }
+
+        }.asFlowable()
+    }
+
+    private fun setMovieNetworkBoundResource(typeMovie: String): Flowable<Resource<List<Movie>>> {
+        return object : NetworkBoundResource<List<Movie>, ListMovieResponse>() {
             override fun loadFromDB(): Flowable<List<Movie>> {
                 return localDataSource.getAllMovieWhereType(typeMovie)
                     .map { DataMapper.mapListMovieEntitiesToDomain(it) }

@@ -1,9 +1,12 @@
 package com.edsusantoo.core.utils
 
+import android.app.Activity
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.os.Build
+import android.view.View
+import android.view.inputmethod.InputMethodManager
 import com.google.gson.Gson
 import java.text.SimpleDateFormat
 import java.util.*
@@ -50,13 +53,19 @@ object MoviedUtils {
         }
     }
 
-    fun convertToStringJson(data:Any):String{
+    fun convertToStringJson(data: Any): String {
         return Gson().toJson(data)
     }
 
     fun convertDate(data: String?, format: String): String {
         val parser = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
-        val formatter = SimpleDateFormat(format,Locale.getDefault())
+        val formatter = SimpleDateFormat(format, Locale.getDefault())
         return formatter.format(parser.parse(data!!)!!)
     }
+
+    fun hideKeyboard(context: Context, view: View) {
+        val imm = context.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(view.windowToken, 0)
+    }
+
 }

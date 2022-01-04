@@ -1,13 +1,122 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/blue_dark_400"
+    android:fillViewport="true"
     tools:context=".ui.search.SearchFragment">
 
-    <TextView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/search" />
+        android:padding="16dp">
 
-</FrameLayout>
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cv_search"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:cardBackgroundColor="@color/grey_76"
+            app:cardCornerRadius="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.appcompat.widget.SearchView
+                android:id="@+id/search"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:focusable="false"
+                app:defaultQueryHint="Search"
+                app:iconifiedByDefault="false"
+                app:queryBackground="@android:color/transparent"
+                app:queryHint="Search"
+                app:searchHintIcon="@drawable/ic_search"
+                app:searchIcon="@drawable/ic_search" />
+        </androidx.cardview.widget.CardView>
+
+
+        <ImageView
+            android:id="@+id/img_search"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:contentDescription="@string/minus"
+            android:src="@drawable/ic_search"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cv_search"
+            app:tint="@color/grey_9C_50" />
+
+        <TextView
+            android:id="@+id/tv_label_find_your_movie"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/find_your_movie"
+            android:textColor="@color/grey_9C_50"
+            android:textSize="23sp"
+            app:layout_constraintEnd_toEndOf="@+id/img_search"
+            app:layout_constraintStart_toStartOf="@+id/img_search"
+            app:layout_constraintTop_toBottomOf="@+id/img_search" />
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/group_search_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:constraint_referenced_ids="img_search,tv_label_find_your_movie" />
+
+        <ProgressBar
+            android:id="@+id/loading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cv_search" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_search"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cv_search" />
+
+        <ImageView
+            android:id="@+id/img_empty_movie"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:contentDescription="@string/minus"
+            android:src="@drawable/ic_movie_clapper_open"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cv_search"
+            app:tint="@color/grey_9C_50" />
+
+        <TextView
+            android:id="@+id/tv_label_movie_not_found"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/movie_not_found"
+            android:textColor="@color/grey_9C_50"
+            android:textSize="23sp"
+            app:layout_constraintEnd_toEndOf="@+id/img_empty_movie"
+            app:layout_constraintStart_toStartOf="@+id/img_empty_movie"
+            app:layout_constraintTop_toBottomOf="@+id/img_empty_movie" />
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/group_movie_empty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:constraint_referenced_ids="img_empty_movie,tv_label_movie_not_found" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.core.widget.NestedScrollView>
