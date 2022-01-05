@@ -139,14 +139,16 @@
                 app:layout_constraintTop_toTopOf="@+id/edt_password" />
 
             <com.google.android.material.button.MaterialButton
+                style="@style/MaterialButtonStyle"
                 android:id="@+id/btn_login"
                 android:layout_width="0dp"
                 android:paddingTop="14dp"
                 android:paddingBottom="14dp"
                 app:cornerRadius="11dp"
+                android:enabled="false"
                 android:textStyle="bold"
                 android:textAllCaps="false"
-                app:backgroundTint="@color/green_500"
+                app:backgroundTint="@color/grey_9C"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="100dp"
                 android:textSize="18sp"

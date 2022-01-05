@@ -3,6 +3,7 @@ package com.edsusantoo.core.utils
 import com.edsusantoo.core.data.source.local.entity.CastEntity
 import com.edsusantoo.core.data.source.local.entity.FavoriteEntity
 import com.edsusantoo.core.data.source.local.entity.MovieEntity
+import com.edsusantoo.core.data.source.local.entity.UserEntity
 import com.edsusantoo.core.data.source.local.entity.join.MovieFavorite
 import com.edsusantoo.core.data.source.remote.response.movie.cast.CastResponse
 import com.edsusantoo.core.data.source.remote.response.movie.detail.DetailMovieResponse
@@ -10,6 +11,7 @@ import com.edsusantoo.core.data.source.remote.response.movie.list.ListMovieRespo
 import com.edsusantoo.core.domain.model.cast.Cast
 import com.edsusantoo.core.domain.model.favorite.Favorite
 import com.edsusantoo.core.domain.model.movie.Movie
+import com.edsusantoo.core.domain.model.user.User
 import com.edsusantoo.core.domain.model.moviefavorite.MovieFavorite as MovieFavoriteDomain
 
 object DataMapper {
@@ -199,4 +201,32 @@ object DataMapper {
             )
         }
 
+    fun mapUserEntitiesToDomain(user: UserEntity): User =
+        User(
+            userId = user.userId,
+            username = user.username,
+            email = user.email,
+            password = user.password,
+            isLogin = user.isLogin
+        )
+
+    fun mapUserDomainToEntities(user: User): UserEntity =
+        UserEntity(
+            userId = user.userId,
+            username = user.username,
+            email = user.email,
+            password = user.password,
+            isLogin = user.isLogin
+        )
+
+    fun mapListUserEntitiesToDomain(user: List<UserEntity>): List<User> =
+        user.map {
+            User(
+                userId = it.userId,
+                username = it.username,
+                email = it.email,
+                password = it.password,
+                isLogin = it.isLogin
+            )
+        }
 }

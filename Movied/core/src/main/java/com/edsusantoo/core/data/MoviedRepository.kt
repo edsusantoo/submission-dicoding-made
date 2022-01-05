@@ -1,5 +1,6 @@
 package com.edsusantoo.core.data
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.util.Log
 import com.edsusantoo.core.data.source.local.LocalDataSource
@@ -12,6 +13,7 @@ import com.edsusantoo.core.domain.model.cast.Cast
 import com.edsusantoo.core.domain.model.favorite.Favorite
 import com.edsusantoo.core.domain.model.movie.Movie
 import com.edsusantoo.core.domain.model.moviefavorite.MovieFavorite
+import com.edsusantoo.core.domain.model.user.User
 import com.edsusantoo.core.domain.repository.IMoviedRepository
 import com.edsusantoo.core.utils.AppExecutors
 import com.edsusantoo.core.utils.Constants
@@ -20,10 +22,12 @@ import com.edsusantoo.core.utils.MoviedUtils
 import dagger.hilt.android.qualifiers.ApplicationContext
 import io.reactivex.BackpressureStrategy
 import io.reactivex.Flowable
+import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import io.reactivex.subjects.PublishSubject
+import io.reactivex.subjects.SingleSubject
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -163,6 +167,80 @@ class MoviedRepository @Inject constructor(
     override fun getLocalFavoriteMovie(): Flowable<List<MovieFavorite>> {
         return localDataSource.getFavoriteMovie()
             .map { DataMapper.mapListMovieFavoriteEntitiesToDomain(it) }
+    }
+
+    @SuppressLint("CheckResult")
+    override fun insertUser(
+        username: String,
+        email: String,
+        password: String
+    ): Flowable<Resource<Long>> {
+        val result = PublishSubject.create<Resource<Long>>()
+        val mapper = DataMapper.mapUserDomainToEntities(
+            User(
+                userId = 0,
+                username = username,
+                email = email,
+                password = password,
+                isLogin = false
+            )
+        )
+        localDataSource.insertUser(mapper)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({ insert ->
+                result.onNext(Resource.Success(insert))
+            }, { error ->
+                result.onNext(Resource.Error(error.message))
+            })
+
+        return result.toFlowable(BackpressureStrategy.BUFFER)
+    }
+
+    @SuppressLint("CheckResult")
+    override fun getUser(email: String): Single<User> {
+        val result = SingleSubject.create<User>()
+        localDataSource.getUser(email)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({ user ->
+                val mapper = DataMapper.mapUserEntitiesToDomain(user)
+                result.onSuccess(mapper)
+            }, { error ->
+                result.onError(error)
+            })
+        return result
+    }
+
+    override fun getAllUser(): Flowable<Resource<List<User>>> {
+        val result = PublishSubject.create<Resource<List<User>>>()
+        val client = localDataSource.getAllUser()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .doOnComplete { compositeDisposableLocal.dispose() }
+            .take(1)
+            .subscribe({ user ->
+                val mapper = DataMapper.mapListUserEntitiesToDomain(user)
+                result.onNext(Resource.Success(mapper))
+            }, { error ->
+                result.onNext(Resource.Error(error.message))
+            })
+        compositeDisposableLocal.add(client)
+        return result.toFlowable(BackpressureStrategy.BUFFER)
+    }
+
+    override fun updateUser(user: User): Flowable<Int> {
+        val result = PublishSubject.create<Int>()
+        val mapper = DataMapper.mapUserDomainToEntities(user)
+        val client = localDataSource.updateUser(mapper)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .doOnSuccess { compositeDisposableLocal.dispose() }
+            .subscribe({
+                result.onNext(it)
+            }, {})
+        compositeDisposableLocal.add(client)
+        return result.toFlowable(BackpressureStrategy.BUFFER)
     }
 
     private fun setMovieNetworkBoundResource(typeMovie: String): Flowable<Resource<List<Movie>>> {

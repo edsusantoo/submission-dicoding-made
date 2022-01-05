@@ -55,7 +55,11 @@ class LocalDataSource @Inject constructor(
 
     fun insertCast(cast: List<CastEntity>): Completable = castDao.insertCast(cast)
 
-    fun getUser(username: String): Single<UserEntity> = userDao.getUser(username)
+    fun getUser(email: String): Single<UserEntity> = userDao.getUser(email)
 
-    fun insertUser(userEntity: UserEntity): Completable = userDao.insert(userEntity)
+    fun insertUser(userEntity: UserEntity): Single<Long> = userDao.insert(userEntity)
+
+    fun getAllUser(): Flowable<List<UserEntity>> = userDao.getAllUser()
+
+    fun updateUser(userEntity: UserEntity): Single<Int> = userDao.updateUser(userEntity)
 }

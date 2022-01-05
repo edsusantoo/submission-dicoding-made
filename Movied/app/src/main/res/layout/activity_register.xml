@@ -204,18 +204,21 @@
                 app:layout_constraintTop_toTopOf="@+id/edt_confirm_password" />
 
             <com.google.android.material.button.MaterialButton
+                style="@style/MaterialButtonStyle"
                 android:id="@+id/btn_create_account"
                 android:layout_width="0dp"
                 android:paddingTop="14dp"
                 android:paddingBottom="14dp"
                 app:cornerRadius="11dp"
                 android:textStyle="bold"
+                android:backgroundTint="@color/grey_9C"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
-                app:backgroundTint="@color/green_500"
+                android:enabled="false"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="50dp"
                 android:textSize="18sp"
+                app:backgroundTint="@color/grey_9C"
                 app:layout_constraintTop_toBottomOf="@+id/edt_confirm_password"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
