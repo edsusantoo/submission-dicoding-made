@@ -15,11 +15,15 @@
 
         <TextView
             android:id="@+id/tv_hello_user"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="@string/hello_guest"
             android:textColor="@color/white"
             android:textSize="24sp"
+            android:layout_marginEnd="16dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            app:layout_constraintEnd_toStartOf="@+id/img_profile"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -59,6 +63,7 @@
             app:tint="@color/red" />
 
         <ImageView
+            android:id="@+id/img_profile"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:contentDescription="@string/minus"

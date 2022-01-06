@@ -185,13 +185,16 @@ class DetailMovieActivity : AppCompatActivity() {
                                         movie.data?.releaseDate,
                                         "MMMM dd, yyyy"
                                     )
-                                    val listGenre: List<Genre> = GsonBuilder().create()
-                                        .fromJson(movie.data?.genres, Array<Genre>::class.java)
-                                        .toList()
-                                    listGenre.map { genre ->
-                                        val chipGenre = Chip(this)
-                                        chipGenre.text = genre.name
-                                        binding.chipGenre.addView(chipGenre)
+
+                                    if (movie.data?.genres != null) {
+                                        val listGenre: List<Genre> = GsonBuilder().create()
+                                            .fromJson(movie.data?.genres, Array<Genre>::class.java)
+                                            .toList()
+                                        listGenre.map { genre ->
+                                            val chipGenre = Chip(this)
+                                            chipGenre.text = genre.name
+                                            binding.chipGenre.addView(chipGenre)
+                                        }
                                     }
                                     binding.tvOverview.text = movie.data?.overview
                                 }
@@ -257,7 +260,7 @@ class DetailMovieActivity : AppCompatActivity() {
                 detailMovieViewModel.getLocalFavorite(data.idMovie).observe(this, { movie ->
                     movie?.let {
                         if (it.isFavorite != null) {
-                            binding.toggleFavorite.isSelected = it.isFavorite!!
+                            binding.toggleFavorite.isChecked = it.isFavorite!!
                         }
                     }
                 })

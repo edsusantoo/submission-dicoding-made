@@ -62,4 +62,6 @@ class LocalDataSource @Inject constructor(
     fun getAllUser(): Flowable<List<UserEntity>> = userDao.getAllUser()
 
     fun updateUser(userEntity: UserEntity): Single<Int> = userDao.updateUser(userEntity)
+
+    fun isLogin(): Single<UserEntity> = userDao.isLogin()
 }

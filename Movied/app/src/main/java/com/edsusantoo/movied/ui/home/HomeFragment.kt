@@ -1,5 +1,7 @@
 package com.edsusantoo.movied.ui.home
 
+import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -9,7 +11,10 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.edsusantoo.core.data.Resource
+import com.edsusantoo.core.domain.model.movie.Movie
+import com.edsusantoo.core.utils.Constants
 import com.edsusantoo.movied.databinding.FragmentHomeBinding
+import com.edsusantoo.movied.ui.detailmovie.DetailMovieActivity
 import com.edsusantoo.movied.ui.home.adapter.MovieViewPagerAdapter
 import com.edsusantoo.movied.ui.home.adapter.PopularSliderAdapter
 import com.google.android.material.tabs.TabLayoutMediator
@@ -52,6 +57,7 @@ class HomeFragment : Fragment() {
         }
     }
 
+    @SuppressLint("SetTextI18n")
     private fun initData() {
         if (activity != null) {
             homeViewModel.moviePopular.observe(viewLifecycleOwner, { movie ->
@@ -60,7 +66,21 @@ class HomeFragment : Fragment() {
                         is Resource.Loading -> binding.loadingSlider.isVisible = true
                         is Resource.Success -> {
                             binding.loadingSlider.isVisible = false
-                            binding.imageSlider.setSliderAdapter(PopularSliderAdapter(movie.data))
+                            binding.imageSlider.setSliderAdapter(
+                                PopularSliderAdapter(movie.data,
+                                    object : PopularSliderAdapter.PopularSlideListener {
+                                        override fun onClickListener(data: Movie, position: Int) {
+                                            val intent =
+                                                Intent(activity, DetailMovieActivity::class.java)
+                                            intent.putExtra(
+                                                Constants.INTENT_DATA_PARCELABLE,
+                                                movie.data?.get(position)
+                                            )
+                                            startActivity(intent)
+                                        }
+
+                                    })
+                            )
                             binding.imageSlider.setIndicatorAnimation(IndicatorAnimationType.WORM)
                         }
                         is Resource.Error -> {
@@ -68,6 +88,12 @@ class HomeFragment : Fragment() {
                             Log.d("Movied Error", "Error")
                         }
                     }
+                }
+            })
+
+            homeViewModel.isLogin.observe(viewLifecycleOwner, { user ->
+                if (user != null) {
+                    binding.tvHelloUser.text = "Hello, ${user.username}"
                 }
             })
         }

@@ -19,7 +19,8 @@ interface IMoviedRepository {
     fun searchMovie(query: String): Flowable<Resource<List<Movie>>>
     fun getLocalFavoriteMovie(): Flowable<List<MovieFavorite>>
     fun insertUser(username: String, email: String, password: String): Flowable<Resource<Long>>
-    fun getUser(email: String): Single<User>
+    fun getUser(email: String): Single<Resource<User>>
     fun getAllUser(): Flowable<Resource<List<User>>>
     fun updateUser(user: User): Flowable<Int>
+    fun isLogin(): Flowable<User>
 }

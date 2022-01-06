@@ -8,7 +8,10 @@ import com.edsusantoo.core.utils.Constants
 import com.edsusantoo.movied.databinding.ItemSliderImageBinding
 import com.smarteist.autoimageslider.SliderViewAdapter
 
-class PopularSliderAdapter(private val list: List<Movie>?) :
+class PopularSliderAdapter(
+    private val list: List<Movie>?,
+    private val listener: PopularSlideListener
+) :
     SliderViewAdapter<PopularSliderAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup?): ViewHolder {
@@ -27,6 +30,9 @@ class PopularSliderAdapter(private val list: List<Movie>?) :
             it.tvTitle.text = list?.get(position)?.originalTitle
             it.tvOverview.text = list?.get(position)?.overview
         }
+        holder.itemView.setOnClickListener {
+            list?.get(position)?.let { it1 -> listener.onClickListener(it1, position) }
+        }
     }
 
     override fun getCount(): Int {
@@ -37,6 +43,10 @@ class PopularSliderAdapter(private val list: List<Movie>?) :
                 0
         else
             0
+    }
+
+    interface PopularSlideListener {
+        fun onClickListener(data: Movie, position: Int)
     }
 
     inner class ViewHolder(val binding: ItemSliderImageBinding) :

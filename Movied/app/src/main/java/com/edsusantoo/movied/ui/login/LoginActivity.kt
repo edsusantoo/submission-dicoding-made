@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import com.edsusantoo.core.data.Resource
 import com.edsusantoo.core.domain.model.user.User
 import com.edsusantoo.core.utils.MoviedUtils
 import com.edsusantoo.movied.R
@@ -68,34 +69,57 @@ class LoginActivity : AppCompatActivity() {
         binding.btnLogin.setOnClickListener {
             val email = binding.edtEmail.text.toString()
             val password = binding.edtPassword.text.toString()
+
             if (email.isNotEmpty()) {
                 loginViewModel.getUser(binding.edtEmail.text.toString())
                     .observe(this, { user ->
                         if (user != null) {
-                            when {
-                                email != user.email -> {
-                                    Toast.makeText(
-                                        this,
-                                        "Email is not register",
-                                        Toast.LENGTH_SHORT
-                                    ).show()
+                            when (user) {
+                                is Resource.Loading -> {
                                 }
-                                password != user.password -> {
-                                    Toast.makeText(this, "Password wrong", Toast.LENGTH_SHORT)
-                                        .show()
+                                is Resource.Success -> {
+                                    when {
+                                        password != user.data?.password -> {
+                                            Toast.makeText(
+                                                this,
+                                                "Password wrong",
+                                                Toast.LENGTH_SHORT
+                                            )
+                                                .show()
+                                        }
+                                        else -> {
+                                            user.data?.let {
+                                                loginViewModel.updateUser(
+                                                    User(
+                                                        userId = it.userId,
+                                                        username = it.username,
+                                                        email = it.email,
+                                                        password = it.password,
+                                                        isLogin = true
+                                                    )
+                                                )
+                                                startActivity(
+                                                    Intent(
+                                                        this,
+                                                        MainActivity::class.java
+                                                    )
+                                                )
+                                                finish()
+                                            }
+
+                                        }
+                                    }
                                 }
-                                else -> {
-                                    loginViewModel.updateUser(
-                                        User(
-                                            userId = user.userId,
-                                            username = user.username,
-                                            email = user.email,
-                                            password = user.password,
-                                            isLogin = true
-                                        )
-                                    )
-                                    startActivity(Intent(this, MainActivity::class.java))
-                                    finish()
+                                is Resource.Error -> {
+                                    when {
+                                        email != user.data?.email -> {
+                                            Toast.makeText(
+                                                this,
+                                                "Email is not register",
+                                                Toast.LENGTH_SHORT
+                                            ).show()
+                                        }
+                                    }
                                 }
                             }
                         }

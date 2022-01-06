@@ -1,24 +1,73 @@
 package com.edsusantoo.movied.ui.profile
 
+import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.edsusantoo.movied.R
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import com.edsusantoo.core.domain.model.user.User
+import com.edsusantoo.movied.databinding.FragmentProfileBinding
+import com.edsusantoo.movied.ui.editprofile.EditProfileFragment
+import com.edsusantoo.movied.ui.welcomescreen.WelcomeActivity
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class ProfileFragment : Fragment() {
+    private val profileViewModel: ProfileViewModel by viewModels()
 
+    private var _binding: FragmentProfileBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_profile, container, false)
+    ): View {
+        _binding = FragmentProfileBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        initData()
+        initView()
+    }
+
+    private fun initData() {
+
+    }
+
+    private fun initView() {
+        binding.btnEditProfile.setOnClickListener {
+            val editProfile = EditProfileFragment()
+            editProfile.show(childFragmentManager, EditProfileFragment.TAG)
+
+        }
+
+        binding.btnLogout.setOnClickListener {
+            profileViewModel.isLogin.observe(viewLifecycleOwner, { user ->
+                if (user != null) {
+                    profileViewModel.updateUser(
+                        User(
+                            userId = user.userId,
+                            username = user.username,
+                            password = user.password,
+                            email = user.email,
+                            isLogin = false
+                        )
+                    ).observe(viewLifecycleOwner, {
+                        if (it != -1) {
+                            startActivity(Intent(activity, WelcomeActivity::class.java))
+                            activity?.finish()
+                        }
+                    })
+                }
+            })
+        }
     }
 
     companion object {
-       fun getInstance() = ProfileFragment()
+        fun getInstance() = ProfileFragment()
     }
 }

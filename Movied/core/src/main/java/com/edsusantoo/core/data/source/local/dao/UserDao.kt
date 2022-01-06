@@ -18,4 +18,7 @@ interface UserDao {
 
     @Update
     fun updateUser(userEntity: UserEntity): Single<Int>
+
+    @Query("SELECT * FROM user WHERE is_login = 1")
+    fun isLogin(): Single<UserEntity>
 }

@@ -37,9 +37,8 @@ class MoviedRepository @Inject constructor(
     private val localDataSource: LocalDataSource,
     @ApplicationContext private val context: Context,
     private val appExecutors: AppExecutors,
+    private val compositeDisposable: CompositeDisposable
 ) : IMoviedRepository {
-    private val compositeDisposableRemote = CompositeDisposable()
-    private val compositeDisposableLocal = CompositeDisposable()
     override fun getMovies(type: String): Flowable<Resource<List<Movie>>> {
         return when (type) {
             Constants.TYPE_MOVIE_POPULAR -> {
@@ -110,7 +109,7 @@ class MoviedRepository @Inject constructor(
         val client = remoteDataSource.getRelatedMovie(id)
             .subscribeOn(Schedulers.computation())
             .observeOn(AndroidSchedulers.mainThread())
-            .doOnComplete{compositeDisposableRemote.dispose()}
+            .doOnComplete { compositeDisposable.dispose() }
             .subscribe { response ->
                 when (response) {
                     is ApiResponse.Success -> {
@@ -124,7 +123,7 @@ class MoviedRepository @Inject constructor(
                 }
 
             }
-        compositeDisposableRemote.add(client)
+        compositeDisposable.add(client)
         return result.toFlowable(BackpressureStrategy.BUFFER)
     }
 
@@ -198,16 +197,16 @@ class MoviedRepository @Inject constructor(
     }
 
     @SuppressLint("CheckResult")
-    override fun getUser(email: String): Single<User> {
-        val result = SingleSubject.create<User>()
+    override fun getUser(email: String): Single<Resource<User>> {
+        val result = SingleSubject.create<Resource<User>>()
         localDataSource.getUser(email)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({ user ->
                 val mapper = DataMapper.mapUserEntitiesToDomain(user)
-                result.onSuccess(mapper)
+                result.onSuccess(Resource.Success(mapper))
             }, { error ->
-                result.onError(error)
+                result.onSuccess(Resource.Error(error.message))
             })
         return result
     }
@@ -217,7 +216,6 @@ class MoviedRepository @Inject constructor(
         val client = localDataSource.getAllUser()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .doOnComplete { compositeDisposableLocal.dispose() }
             .take(1)
             .subscribe({ user ->
                 val mapper = DataMapper.mapListUserEntitiesToDomain(user)
@@ -225,7 +223,6 @@ class MoviedRepository @Inject constructor(
             }, { error ->
                 result.onNext(Resource.Error(error.message))
             })
-        compositeDisposableLocal.add(client)
         return result.toFlowable(BackpressureStrategy.BUFFER)
     }
 
@@ -235,11 +232,23 @@ class MoviedRepository @Inject constructor(
         val client = localDataSource.updateUser(mapper)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .doOnSuccess { compositeDisposableLocal.dispose() }
             .subscribe({
                 result.onNext(it)
             }, {})
-        compositeDisposableLocal.add(client)
+        return result.toFlowable(BackpressureStrategy.BUFFER)
+    }
+
+    @SuppressLint("CheckResult")
+    override fun isLogin(): Flowable<User> {
+        val result = PublishSubject.create<User>()
+        localDataSource.isLogin()
+            .subscribeOn(Schedulers.computation())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe { user ->
+                val mapper = DataMapper.mapUserEntitiesToDomain(user)
+                result.onNext(mapper)
+            }
+
         return result.toFlowable(BackpressureStrategy.BUFFER)
     }
 

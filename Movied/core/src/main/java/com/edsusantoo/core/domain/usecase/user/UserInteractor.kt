@@ -9,7 +9,7 @@ import javax.inject.Inject
 class UserInteractor @Inject constructor(
     private val moviedRepository: MoviedRepository
 ) : UserUseCase {
-    override fun getUser(email: String): Flowable<User> =
+    override fun getUser(email: String): Flowable<Resource<User>> =
         moviedRepository.getUser(email).toFlowable()
 
     override fun insertUser(
@@ -23,4 +23,6 @@ class UserInteractor @Inject constructor(
         moviedRepository.getAllUser()
 
     override fun updateUser(user: User): Flowable<Int> = moviedRepository.updateUser(user)
+
+    override fun isLogin(): Flowable<User> = moviedRepository.isLogin()
 }
