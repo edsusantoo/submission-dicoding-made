@@ -3,6 +3,7 @@ package com.edsusantoo.core.data.source.remote.config
 import com.edsusantoo.core.data.source.remote.response.movie.cast.CastResponse
 import com.edsusantoo.core.data.source.remote.response.movie.detail.DetailMovieResponse
 import com.edsusantoo.core.data.source.remote.response.movie.list.ListMovieResponse
+import com.edsusantoo.core.data.source.remote.response.movie.video.VideoResponse
 import io.reactivex.Flowable
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -37,4 +38,9 @@ interface ApiService {
     fun searchMovie(
         @Query("query") query: String
     ): Flowable<ListMovieResponse>
+
+    @GET("movie/{id_movie}/videos")
+    fun getVideoMovie(
+        @Path("id_movie") id: String
+    ): Flowable<VideoResponse>
 }

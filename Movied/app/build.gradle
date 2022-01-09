@@ -37,6 +37,7 @@ android {
     viewBinding{
         enabled = true
     }
+    dynamicFeatures = [':videoplayer']
 }
 
 dependencies {

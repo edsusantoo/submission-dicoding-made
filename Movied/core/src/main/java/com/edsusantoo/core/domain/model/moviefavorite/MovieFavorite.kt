@@ -34,6 +34,10 @@ data class MovieFavorite(
 
     val isFavorite: Boolean? = null,
 
+    val video: String? = null,
+
+    val typeVideo: String? = null,
+
     //type movie : popular, up_coming, coming_soon
     val typeMovie: String? = null
 

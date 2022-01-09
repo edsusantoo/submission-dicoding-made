@@ -1,7 +1,9 @@
 package com.edsusantoo.movied.ui.detailmovie
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.content.res.ColorStateList
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
@@ -87,6 +89,14 @@ class DetailMovieActivity : AppCompatActivity() {
                                         binding.chipGenre.addView(chipGenre)
                                     }
                                     binding.tvOverview.text = movie.data?.overview
+
+                                    binding.btnPlay.setOnClickListener {
+                                        val video = movie.data?.video
+                                        val site = movie.data?.typeMovie
+                                        val uri =
+                                            Uri.parse("movied://videoplayer?video=${video}&site=${site}".trim())
+                                        startActivity(Intent(Intent.ACTION_VIEW, uri))
+                                    }
                                 }
                                 is Resource.Error -> {
                                     Toast.makeText(this, "ERROR", Toast.LENGTH_SHORT).show()
@@ -197,6 +207,15 @@ class DetailMovieActivity : AppCompatActivity() {
                                         }
                                     }
                                     binding.tvOverview.text = movie.data?.overview
+
+                                    binding.btnPlay.setOnClickListener {
+                                        val video = movie.data?.video
+                                        val site = movie.data?.typeVideo
+
+                                        val uri =
+                                            Uri.parse("movied://videoplayer?video=${video}&site=${site}".trim())
+                                        startActivity(Intent(Intent.ACTION_VIEW, uri))
+                                    }
                                 }
                                 is Resource.Error -> {
                                     Toast.makeText(this, "ERROR", Toast.LENGTH_SHORT).show()
@@ -273,7 +292,6 @@ class DetailMovieActivity : AppCompatActivity() {
 
     private fun initView() {
         binding.imgBack.setOnClickListener { finish() }
-
         val type = intent.getStringExtra(Constants.INTENT_DATA_TYPE)
         if (type != null && type == Constants.TYPE_DETAIL_FAVORITE_MOVIE) {
             val data = intent.getParcelableExtra<MovieFavorite>(Constants.INTENT_DATA_PARCELABLE)
@@ -318,6 +336,5 @@ class DetailMovieActivity : AppCompatActivity() {
                 }
             }
         }
-
     }
 }

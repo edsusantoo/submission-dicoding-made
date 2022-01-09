@@ -6,7 +6,6 @@ import com.edsusantoo.core.data.source.local.entity.MovieEntity
 import com.edsusantoo.core.data.source.local.entity.UserEntity
 import com.edsusantoo.core.data.source.local.entity.join.MovieFavorite
 import com.edsusantoo.core.data.source.remote.response.movie.cast.CastResponse
-import com.edsusantoo.core.data.source.remote.response.movie.detail.DetailMovieResponse
 import com.edsusantoo.core.data.source.remote.response.movie.list.ListMovieResponse
 import com.edsusantoo.core.domain.model.cast.Cast
 import com.edsusantoo.core.domain.model.favorite.Favorite
@@ -70,13 +69,13 @@ object DataMapper {
                 isFavorite = false,
                 productionCountries = "",
                 runtime = "",
-                tagline = ""
+                tagline = "",
             )
         }
 
-    fun mapMovieResponseToEntities(detail:DetailMovieResponse,typeMovie:String):MovieEntity =
+    fun mapMovieResponseToEntities(detail: Movie, typeMovie: String): MovieEntity =
         MovieEntity(
-            idMovie = detail.id.toString(),
+            idMovie = detail.idMovie,
             backdropPath = detail.backdropPath,
             originalTitle = detail.originalTitle,
             overview = detail.overview,
@@ -84,12 +83,14 @@ object DataMapper {
             releaseDate = detail.releaseDate,
             voteAverage = detail.voteAverage.toString(),
             typeMovie = typeMovie,
-            productionCompanies = MoviedUtils.convertToStringJson(detail.productionCompanies),
+            productionCompanies = detail.productionCompanies,
             budget = detail.budget.toString(),
-            genres = MoviedUtils.convertToStringJson(detail.genres),
-            productionCountries = MoviedUtils.convertToStringJson(detail.productionCountries),
+            genres = detail.genres,
+            productionCountries = detail.productionCountries,
             runtime = detail.runtime.toString(),
-            tagline = detail.tagline
+            tagline = detail.tagline,
+            video = detail.video,
+            typeVideo = detail.typeVideo
         )
 
     fun mapCastResponseToEntities(response:CastResponse):List<CastEntity> {
@@ -152,7 +153,9 @@ object DataMapper {
             genres = movieEntity.genres,
             productionCountries = movieEntity.productionCountries,
             runtime = movieEntity.runtime,
-            tagline = movieEntity.tagline
+            tagline = movieEntity.tagline,
+            typeVideo = movieEntity.typeVideo,
+            video = movieEntity.video
         )
 
     fun mapFavoriteDomainToEntities(favorite: Favorite): FavoriteEntity =
@@ -177,7 +180,9 @@ object DataMapper {
             isFavorite = movieFavorite.isFavorite,
             productionCountries = movieFavorite.productionCountries,
             runtime = movieFavorite.runtime,
-            tagline = movieFavorite.tagline
+            tagline = movieFavorite.tagline,
+            video = movieFavorite.video,
+            typeVideo = movieFavorite.typeVideo
         )
 
     fun mapListMovieFavoriteEntitiesToDomain(movieFavorite: List<MovieFavorite>) =
@@ -197,7 +202,9 @@ object DataMapper {
                 isFavorite = it.isFavorite,
                 productionCountries = it.productionCountries,
                 runtime = it.runtime,
-                tagline = it.tagline
+                tagline = it.tagline,
+                video = it.video,
+                typeVideo = it.typeVideo
             )
         }
 

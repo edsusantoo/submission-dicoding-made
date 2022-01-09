@@ -7,7 +7,6 @@ import com.edsusantoo.core.data.source.local.LocalDataSource
 import com.edsusantoo.core.data.source.remote.RemoteDataSource
 import com.edsusantoo.core.data.source.remote.config.ApiResponse
 import com.edsusantoo.core.data.source.remote.response.movie.cast.CastResponse
-import com.edsusantoo.core.data.source.remote.response.movie.detail.DetailMovieResponse
 import com.edsusantoo.core.data.source.remote.response.movie.list.ListMovieResponse
 import com.edsusantoo.core.domain.model.cast.Cast
 import com.edsusantoo.core.domain.model.favorite.Favorite
@@ -55,22 +54,23 @@ class MoviedRepository @Inject constructor(
     }
 
     override fun getDetailMovie(id: String,type: String): Flowable<Resource<Movie>> {
-        return object : NetworkBoundResource<Movie, DetailMovieResponse>(){
+        return object : NetworkBoundResource<Movie, Movie>() {
             override fun loadFromDB(): Flowable<Movie> {
-                return localDataSource.getDetailMovie(id).map { DataMapper.mapMovieEntitiesToDomain(it) }
+                return localDataSource.getDetailMovie(id)
+                    .map { DataMapper.mapMovieEntitiesToDomain(it) }
             }
 
             override fun shouldFetch(data: Movie?): Boolean {
                 return MoviedUtils.checkForInternet(context)
             }
 
-            override fun createCallNetwork(): Flowable<ApiResponse<DetailMovieResponse>> {
-                return remoteDataSource.getDetailMovie(id)
+            override fun createCallNetwork(): Flowable<ApiResponse<Movie>> {
+                return remoteDataSource.getDetailMovie(id, type)
             }
 
-            override fun saveCallResultToDB(data: DetailMovieResponse) {
-                val mapper = DataMapper.mapMovieResponseToEntities(data,type)
-                localDataSource.updateDetailMovie(mapper,data)
+            override fun saveCallResultToDB(data: Movie) {
+                val mapper = DataMapper.mapMovieResponseToEntities(data, type)
+                localDataSource.updateDetailMovie(mapper, data)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe()

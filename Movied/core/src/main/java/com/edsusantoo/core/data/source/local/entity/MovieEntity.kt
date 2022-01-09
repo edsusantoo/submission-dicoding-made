@@ -51,6 +51,12 @@ data class MovieEntity(
     @ColumnInfo(name = "vote_average")
     var voteAverage: String? = null,
 
+    @ColumnInfo(name = "video")
+    var video: String? = null,
+
+    @ColumnInfo(name = "type_video")
+    var typeVideo: String? = null,
+
     //type movie : popular, up_coming, coming_soon
     @ColumnInfo(name = "type_movie")
     var typeMovie: String? = null

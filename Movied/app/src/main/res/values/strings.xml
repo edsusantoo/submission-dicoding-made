@@ -41,4 +41,5 @@
     <string name="edit_profile">Edit Profile</string>
     <string name="logout">Logout</string>
     <string name="update">Update</string>
+    <string name="title_videoplayer">Video Player</string>
 </resources>

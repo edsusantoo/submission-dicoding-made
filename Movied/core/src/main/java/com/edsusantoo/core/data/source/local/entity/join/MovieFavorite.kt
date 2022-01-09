@@ -20,34 +20,40 @@ data class MovieFavorite(
     @ColumnInfo(name = "original_title")
     val originalTitle:String?=null,
 
-    val overview:String?=null,
+    val overview: String? = null,
 
     @ColumnInfo(name = "poster_path")
-    val posterPath:String?=null,
+    val posterPath: String? = null,
 
     @ColumnInfo(name = "production_companies")
-    val productionCompanies:String?=null,
+    val productionCompanies: String? = null,
 
     @ColumnInfo(name = "production_countries")
-    val productionCountries:String?=null,
+    val productionCountries: String? = null,
 
     @ColumnInfo(name = "release_date")
-    val releaseDate:String?=null,
+    val releaseDate: String? = null,
 
-    val runtime:String?=null,
+    val runtime: String? = null,
 
-    val tagline:String?=null,
+    val tagline: String? = null,
 
     @ColumnInfo(name = "vote_average")
-    val voteAverage:String?=null,
+    val voteAverage: String? = null,
 
     @ColumnInfo(name = "id_favorite")
-    val idFavorite:String?=null,
+    val idFavorite: String? = null,
 
     @ColumnInfo(name = "favorite")
-    val isFavorite:Boolean?=null,
+    val isFavorite: Boolean? = null,
+
+    @ColumnInfo(name = "video")
+    val video: String? = null,
+
+    @ColumnInfo(name = "type_video")
+    val typeVideo: String? = null,
 
     //type movie : popular, up_coming, coming_soon
     @ColumnInfo(name = "type_movie")
-    val typeMovie:String?=null
+    val typeMovie: String? = null
 ):Parcelable

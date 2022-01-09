@@ -51,7 +51,6 @@
             android:layout_height="50dp"
             android:background="?selectableItemBackgroundBorderless"
             android:focusable="true"
-            android:visibility="gone"
             app:cardBackgroundColor="@color/white_50"
             app:cardCornerRadius="25dp"
             app:layout_constraintBottom_toBottomOf="@+id/ll_img_backdrop_path"

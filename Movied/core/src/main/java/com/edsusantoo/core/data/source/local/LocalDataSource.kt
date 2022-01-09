@@ -8,8 +8,7 @@ import com.edsusantoo.core.data.source.local.entity.FavoriteEntity
 import com.edsusantoo.core.data.source.local.entity.MovieEntity
 import com.edsusantoo.core.data.source.local.entity.UserEntity
 import com.edsusantoo.core.data.source.local.entity.join.MovieFavorite
-import com.edsusantoo.core.data.source.remote.response.movie.detail.DetailMovieResponse
-import com.edsusantoo.core.utils.MoviedUtils
+import com.edsusantoo.core.domain.model.movie.Movie
 import io.reactivex.Completable
 import io.reactivex.Flowable
 import io.reactivex.Single
@@ -34,13 +33,11 @@ class LocalDataSource @Inject constructor(
         movieDao.insertFavorite(favorite)
 
 
-    fun updateDetailMovie(movieEntity:MovieEntity,movieResponse: DetailMovieResponse):Completable{
+    fun updateDetailMovie(movieEntity: MovieEntity, movieResponse: Movie): Completable {
         movieEntity.budget = movieResponse.budget.toString()
-        movieEntity.genres = MoviedUtils.convertToStringJson(movieResponse.genres)
-        movieEntity.productionCompanies =
-            MoviedUtils.convertToStringJson(movieResponse.productionCompanies)
-        movieEntity.productionCountries =
-            MoviedUtils.convertToStringJson(movieResponse.productionCountries)
+        movieEntity.genres = movieResponse.genres
+        movieEntity.productionCompanies = movieResponse.productionCompanies
+        movieEntity.productionCountries = movieResponse.productionCountries
         movieEntity.runtime = movieResponse.runtime.toString()
         movieEntity.tagline = movieResponse.tagline
         return movieDao.updateMovie(movieEntity)
