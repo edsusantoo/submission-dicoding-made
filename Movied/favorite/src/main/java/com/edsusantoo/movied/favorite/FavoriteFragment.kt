@@ -1,5 +1,6 @@
-package com.edsusantoo.movied.ui.favorite
+package com.edsusantoo.movied.favorite
 
+import android.content.Context
 import android.content.Intent
 import android.content.res.ColorStateList
 import android.os.Bundle
@@ -15,20 +16,39 @@ import com.edsusantoo.core.data.source.remote.response.movie.detail.Genre
 import com.edsusantoo.core.domain.model.moviefavorite.MovieFavorite
 import com.edsusantoo.core.utils.Constants
 import com.edsusantoo.movied.R
-import com.edsusantoo.movied.databinding.FragmentFavoriteBinding
 import com.edsusantoo.movied.databinding.ItemFavoriteMovieBinding
+import com.edsusantoo.movied.di.FavoriteModule
+import com.edsusantoo.movied.favorite.adapter.FavoriteMovieAdapter
+import com.edsusantoo.movied.favorite.databinding.FragmentFavoriteBinding
 import com.edsusantoo.movied.ui.detailmovie.DetailMovieActivity
-import com.edsusantoo.movied.ui.favorite.adapter.FavoriteMovieAdapter
 import com.google.android.material.chip.Chip
 import com.google.gson.GsonBuilder
-import dagger.hilt.android.AndroidEntryPoint
+import dagger.hilt.android.EntryPointAccessors
+import javax.inject.Inject
 
-@AndroidEntryPoint
 class FavoriteFragment : Fragment() {
-    private val favoriteViewModel: FavoriteViewModel by viewModels()
+    @Inject
+    lateinit var factory: ViewModelFactory
+    private val favoriteViewModel: FavoriteViewModel by viewModels {
+        factory
+    }
 
     private var _binding: FragmentFavoriteBinding? = null
     private val binding get() = _binding!!
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        DaggerFavoriteComponent.builder()
+            .context(context)
+            .appDependencies(
+                EntryPointAccessors.fromApplication(
+                    context,
+                    FavoriteModule::class.java
+                )
+            )
+            .build()
+            .inject(this)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -41,11 +61,6 @@ class FavoriteFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initData()
-        initView()
-    }
-
-    private fun initView() {
-
     }
 
     private fun initData() {
@@ -119,7 +134,7 @@ class FavoriteFragment : Fragment() {
     }
 
     companion object {
-        fun getInstance() = FavoriteFragment()
+
     }
 
     override fun onDestroyView() {

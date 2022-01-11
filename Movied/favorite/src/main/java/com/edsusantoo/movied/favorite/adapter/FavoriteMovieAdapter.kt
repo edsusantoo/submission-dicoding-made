@@ -1,4 +1,4 @@
-package com.edsusantoo.movied.ui.favorite.adapter
+package com.edsusantoo.movied.favorite.adapter
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater

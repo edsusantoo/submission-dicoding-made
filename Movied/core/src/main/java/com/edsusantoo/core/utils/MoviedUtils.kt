@@ -7,6 +7,8 @@ import android.net.NetworkCapabilities
 import android.os.Build
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import com.google.gson.Gson
 import java.text.SimpleDateFormat
 import java.util.*
@@ -66,6 +68,10 @@ object MoviedUtils {
     fun hideKeyboard(context: Context, view: View) {
         val imm = context.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
         imm.hideSoftInputFromWindow(view.windowToken, 0)
+    }
+
+    fun FragmentManager.instantiate(className: String): Fragment {
+        return fragmentFactory.instantiate(ClassLoader.getSystemClassLoader(), className)
     }
 
 }

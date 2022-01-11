@@ -3,9 +3,9 @@ package com.edsusantoo.movied.ui.main
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import com.edsusantoo.core.utils.MoviedUtils.instantiate
 import com.edsusantoo.movied.R
 import com.edsusantoo.movied.databinding.ActivityMainBinding
-import com.edsusantoo.movied.ui.favorite.FavoriteFragment
 import com.edsusantoo.movied.ui.home.HomeFragment
 import com.edsusantoo.movied.ui.profile.ProfileFragment
 import com.edsusantoo.movied.ui.search.SearchFragment
@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity() {
             when(it.itemId){
                 R.id.nav_home -> setCurrentFragment(HomeFragment.getInstance())
                 R.id.nav_search -> setCurrentFragment(SearchFragment.getInstance())
-                R.id.nav_favorite -> setCurrentFragment(FavoriteFragment.getInstance())
+                R.id.nav_favorite -> setCurrentFragment(supportFragmentManager.instantiate("com.edsusantoo.movied.favorite.FavoriteFragment"))
                 R.id.nav_profile -> setCurrentFragment(ProfileFragment.getInstance())
                 else -> setCurrentFragment(HomeFragment.getInstance())
             }

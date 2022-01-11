@@ -10,3 +10,4 @@ rootProject.name = "Movied"
 include ':app'
 include ':core'
 include ':videoplayer'
+include ':favorite'

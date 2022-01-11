@@ -42,4 +42,5 @@
     <string name="logout">Logout</string>
     <string name="update">Update</string>
     <string name="title_videoplayer">Video Player</string>
+    <string name="title_favorite">Favorite</string>
 </resources>
