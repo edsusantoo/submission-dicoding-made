@@ -168,7 +168,7 @@ class RegisterActivity : AppCompatActivity() {
                     )
                 )
             } else {
-                binding.btnCreateAccount.isEnabled = true
+                binding.btnCreateAccount.isEnabled = false
                 binding.btnCreateAccount.setBackgroundColor(
                     ContextCompat.getColor(
                         this,
@@ -188,11 +188,12 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     private fun showPasswordMinimalAlert(isNotValid: Boolean) {
-        binding.edtPassword.error = if (isNotValid) getString(R.string.password_not_valid) else null
+        binding.tvLabelErrorPassword.text =
+            if (isNotValid) getString(R.string.password_not_valid) else ""
     }
 
     private fun showPasswordConfirmationAlert(isNotValid: Boolean) {
-        binding.edtConfirmPassword.error =
-            if (isNotValid) getString(R.string.password_not_same) else null
+        binding.tvLabelErrorConfirmPassword.text =
+            if (isNotValid) getString(R.string.password_not_same) else ""
     }
 }

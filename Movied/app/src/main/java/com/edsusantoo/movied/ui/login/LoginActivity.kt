@@ -164,7 +164,7 @@ class LoginActivity : AppCompatActivity() {
                 binding.btnLogin.isEnabled = true
                 binding.btnLogin.setBackgroundColor(ContextCompat.getColor(this, R.color.green_500))
             } else {
-                binding.btnLogin.isEnabled = true
+                binding.btnLogin.isEnabled = false
                 binding.btnLogin.setBackgroundColor(ContextCompat.getColor(this, R.color.grey_9C))
             }
         }
@@ -175,6 +175,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun showPasswordNotEmpty(isNotValid: Boolean) {
-        binding.edtPassword.error = if (isNotValid) getString(R.string.password_not_valid) else null
+        binding.tvLabelErrorPassword.text =
+            if (isNotValid) getString(R.string.password_not_valid) else ""
     }
 }

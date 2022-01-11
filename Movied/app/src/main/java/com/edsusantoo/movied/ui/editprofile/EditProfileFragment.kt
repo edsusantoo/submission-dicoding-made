@@ -138,7 +138,7 @@ class EditProfileFragment : BottomSheetDialogFragment() {
                 )
                 editDataUser()
             } else {
-                binding.btnUpdate.isEnabled = true
+                binding.btnUpdate.isEnabled = false
                 binding.btnUpdate.setBackgroundColor(
                     ContextCompat.getColor(
                         requireContext(),
@@ -158,7 +158,8 @@ class EditProfileFragment : BottomSheetDialogFragment() {
     }
 
     private fun showPasswordMinimalAlert(isNotValid: Boolean) {
-        binding.edtPassword.error = if (isNotValid) getString(R.string.password_not_valid) else null
+        binding.tvLabelErrorPassword.text =
+            if (isNotValid) getString(R.string.password_not_valid) else ""
     }
 
 
