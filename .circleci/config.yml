@@ -6,8 +6,10 @@
     jobs:
       build:
         executor: android/android
+        working_directory: ~/submission-dicoding-made/Movied
         steps:
-          - checkout
+          - checkout :
+              path: ~/submission-dicoding-made
           - restore_cache:
               key: android-orb-v1-
           - run:
