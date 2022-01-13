@@ -1,6 +1,5 @@
 package com.edsusantoo.movied.ui.adapter
 
-import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -17,7 +16,6 @@ class MovieAnyAdapter(private val list: List<Movie>?,private val movieAnyListene
         return ViewHolder(view)
     }
 
-    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: MovieAnyAdapter.ViewHolder, position: Int) {
         holder.binding.let {
             Glide.with(it.root)
@@ -27,7 +25,10 @@ class MovieAnyAdapter(private val list: List<Movie>?,private val movieAnyListene
                 .into(it.imgPoster)
 
             it.tvTitle.text = list?.get(position)?.originalTitle
-            it.tvRate.text = list?.get(position)?.voteAverage + "/10"
+            it.tvRate.text = it.tvRate.context.getString(
+                R.string.rate_variable,
+                list?.get(position)?.voteAverage
+            )
             if (list?.get(position)?.voteAverage != null) {
                 it.circularRate.progress = (list[position].voteAverage!!.toDouble() * 10.0).toInt()
             } else {

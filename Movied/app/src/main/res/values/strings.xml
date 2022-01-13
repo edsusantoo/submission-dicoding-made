@@ -2,7 +2,6 @@
     <string name="app_name">Movied</string>
     <string name="minus">-</string>
     <string name="get_started">Get Started</string>
-    <string name="title">Title</string>
     <string name="log_in_with_one_of_following_options">Log in with one of following options</string>
     <string name="email">Email</string>
     <string name="enter_your_email">Enter your email</string>
@@ -22,7 +21,6 @@
     <string name="search">Search</string>
     <string name="favorite">Favorite</string>
     <string name="profile">Profile</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="hello_guest">Hello, Guest</string>
     <string name="welcome_to">Welcome to</string>
     <string name="release_date">Release Date</string>
@@ -33,7 +31,6 @@
     <string name="related_movie">Related Movie</string>
     <string name="find_your_movie">Find your movie</string>
     <string name="movie_not_found">Movie not found</string>
-    <string name="favorite_empty">Favorite empty</string>
     <string name="username_not_valid">Username not valid</string>
     <string name="email_not_valid">Email not valid</string>
     <string name="password_not_valid">Password not valid</string>
@@ -41,6 +38,8 @@
     <string name="edit_profile">Edit Profile</string>
     <string name="logout">Logout</string>
     <string name="update">Update</string>
-    <string name="title_videoplayer">Video Player</string>
-    <string name="title_favorite">Favorite</string>
+    <string name="runtime_minutes">%s minutes</string>
+    <string name="hello_variable">Hello, %s</string>
+    <string name="rate_variable">%s/10</string>
+    <string name="title_variable_relate_movie">%s (%s)</string>
 </resources>

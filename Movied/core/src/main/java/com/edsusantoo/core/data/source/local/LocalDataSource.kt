@@ -19,7 +19,6 @@ class LocalDataSource @Inject constructor(
     private val movieDao: MovieDao,
     private val castDao:CastDao
 ) {
-    fun getAllMovie(): Flowable<List<MovieEntity>> = movieDao.getAllMovie()
 
     fun searchMovie(query: String): Flowable<List<MovieEntity>> = movieDao.searchMovie(query)
 

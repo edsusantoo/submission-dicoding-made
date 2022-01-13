@@ -1,6 +1,5 @@
 package com.edsusantoo.movied.ui.detailmovie
 
-import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.res.ColorStateList
 import android.net.Uri
@@ -43,7 +42,6 @@ class DetailMovieActivity : AppCompatActivity() {
         initView()
     }
 
-    @SuppressLint("SetTextI18n")
     private fun initData() {
         val type = intent.getStringExtra(Constants.INTENT_DATA_TYPE)
         if (type != null && type == Constants.TYPE_DETAIL_FAVORITE_MOVIE) {
@@ -56,14 +54,20 @@ class DetailMovieActivity : AppCompatActivity() {
                                 is Resource.Loading -> Log.d("Loading", "Loading")
                                 is Resource.Success -> {
                                     Glide.with(binding.root)
-                                        .load(Constants.BASE_URL_IMAGE_MOVIE + movie.data?.backdropPath)
+                                        .load(
+                                            Constants.BASE_URL_IMAGE_MOVIE +
+                                                    movie.data?.backdropPath
+                                        )
                                         .error(R.drawable.movie_backdrop_path_template)
                                         .fitCenter()
                                         .into(binding.imgBackdropPath)
 
 
                                     Glide.with(binding.root)
-                                        .load(Constants.BASE_URL_IMAGE_MOVIE + movie.data?.posterPath)
+                                        .load(
+                                            Constants.BASE_URL_IMAGE_MOVIE +
+                                                    movie.data?.posterPath
+                                        )
                                         .error(R.drawable.movie_poster_template)
                                         .fitCenter()
                                         .into(binding.imgPosterPath)
@@ -71,7 +75,8 @@ class DetailMovieActivity : AppCompatActivity() {
 
 
                                     binding.tvTitle.text = movie.data?.originalTitle
-                                    binding.tvDuration.text = movie.data?.runtime + " " + "minutes"
+                                    binding.tvDuration.text =
+                                        getString(R.string.runtime_minutes, movie.data?.runtime)
                                     binding.tvRate.text = movie.data?.voteAverage.toString()
                                     binding.tvReleaseDate.text = MoviedUtils.convertDate(
                                         movie.data?.releaseDate,
@@ -94,12 +99,16 @@ class DetailMovieActivity : AppCompatActivity() {
                                         val video = movie.data?.video
                                         val site = movie.data?.typeMovie
                                         val uri =
-                                            Uri.parse("movied://videoplayer?video=${video}&site=${site}".trim())
+                                            Uri.parse(
+                                                ("movied://videoplayer?video=${video}&" +
+                                                        "site=${site}").trim()
+                                            )
                                         startActivity(Intent(Intent.ACTION_VIEW, uri))
                                     }
                                 }
                                 is Resource.Error -> {
-                                    Toast.makeText(this, "ERROR", Toast.LENGTH_SHORT).show()
+                                    Toast.makeText(this, "ERROR", Toast.LENGTH_SHORT)
+                                        .show()
                                 }
                             }
                         }
@@ -113,11 +122,15 @@ class DetailMovieActivity : AppCompatActivity() {
                             when (cast) {
                                 is Resource.Loading -> Log.d("Loading", "Loading")
                                 is Resource.Success -> {
-                                    binding.rvCast.layoutManager = GridLayoutManager(this, 2)
+                                    binding.rvCast.layoutManager = GridLayoutManager(
+                                        this,
+                                        2
+                                    )
                                     binding.rvCast.adapter = CastAdapter(cast.data)
                                 }
                                 is Resource.Error -> {
-                                    Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show()
+                                    Toast.makeText(this, "Error", Toast.LENGTH_SHORT)
+                                        .show()
                                 }
                             }
                         } else {
@@ -174,14 +187,20 @@ class DetailMovieActivity : AppCompatActivity() {
                                 is Resource.Loading -> Log.d("Loading", "Loading")
                                 is Resource.Success -> {
                                     Glide.with(binding.root)
-                                        .load(Constants.BASE_URL_IMAGE_MOVIE + movie.data?.backdropPath)
+                                        .load(
+                                            Constants.BASE_URL_IMAGE_MOVIE +
+                                                    movie.data?.backdropPath
+                                        )
                                         .error(R.drawable.movie_backdrop_path_template)
                                         .fitCenter()
                                         .into(binding.imgBackdropPath)
 
 
                                     Glide.with(binding.root)
-                                        .load(Constants.BASE_URL_IMAGE_MOVIE + movie.data?.posterPath)
+                                        .load(
+                                            Constants.BASE_URL_IMAGE_MOVIE +
+                                                    movie.data?.posterPath
+                                        )
                                         .error(R.drawable.movie_poster_template)
                                         .fitCenter()
                                         .into(binding.imgPosterPath)
@@ -189,7 +208,8 @@ class DetailMovieActivity : AppCompatActivity() {
 
 
                                     binding.tvTitle.text = movie.data?.originalTitle
-                                    binding.tvDuration.text = movie.data?.runtime + " " + "minutes"
+                                    binding.tvDuration.text =
+                                        getString(R.string.runtime_minutes, movie.data?.runtime)
                                     binding.tvRate.text = movie.data?.voteAverage.toString()
                                     binding.tvReleaseDate.text = MoviedUtils.convertDate(
                                         movie.data?.releaseDate,
@@ -213,12 +233,16 @@ class DetailMovieActivity : AppCompatActivity() {
                                         val site = movie.data?.typeVideo
 
                                         val uri =
-                                            Uri.parse("movied://videoplayer?video=${video}&site=${site}".trim())
+                                            Uri.parse(
+                                                ("movied://videoplayer?video=${video}&" +
+                                                        "site=${site}").trim()
+                                            )
                                         startActivity(Intent(Intent.ACTION_VIEW, uri))
                                     }
                                 }
                                 is Resource.Error -> {
-                                    Toast.makeText(this, "ERROR", Toast.LENGTH_SHORT).show()
+                                    Toast.makeText(this, "ERROR", Toast.LENGTH_SHORT)
+                                        .show()
                                 }
                             }
                         }
@@ -232,11 +256,15 @@ class DetailMovieActivity : AppCompatActivity() {
                             when (cast) {
                                 is Resource.Loading -> Log.d("Loading", "Loading")
                                 is Resource.Success -> {
-                                    binding.rvCast.layoutManager = GridLayoutManager(this, 2)
+                                    binding.rvCast.layoutManager = GridLayoutManager(
+                                        this,
+                                        2
+                                    )
                                     binding.rvCast.adapter = CastAdapter(cast.data)
                                 }
                                 is Resource.Error -> {
-                                    Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show()
+                                    Toast.makeText(this, "Error", Toast.LENGTH_SHORT)
+                                        .show()
                                 }
                             }
                         } else {

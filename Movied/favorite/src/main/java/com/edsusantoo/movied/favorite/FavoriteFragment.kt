@@ -16,10 +16,10 @@ import com.edsusantoo.core.data.source.remote.response.movie.detail.Genre
 import com.edsusantoo.core.domain.model.moviefavorite.MovieFavorite
 import com.edsusantoo.core.utils.Constants
 import com.edsusantoo.movied.R
-import com.edsusantoo.movied.databinding.ItemFavoriteMovieBinding
 import com.edsusantoo.movied.di.FavoriteModule
 import com.edsusantoo.movied.favorite.adapter.FavoriteMovieAdapter
 import com.edsusantoo.movied.favorite.databinding.FragmentFavoriteBinding
+import com.edsusantoo.movied.favorite.databinding.ItemFavoriteMovieBinding
 import com.edsusantoo.movied.ui.detailmovie.DetailMovieActivity
 import com.google.android.material.chip.Chip
 import com.google.gson.GsonBuilder
@@ -93,6 +93,12 @@ class FavoriteFragment : Fragment() {
                                             val chipGenre = Chip(requireContext())
                                             chipGenre.text = genre.name
                                             chipGenre.textSize = 12.0F
+                                            chipGenre.setTextColor(
+                                                ContextCompat.getColor(
+                                                    requireContext(),
+                                                    R.color.white_BBB
+                                                )
+                                            )
                                             chipGenre.chipBackgroundColor = ColorStateList.valueOf(
                                                 ContextCompat.getColor(
                                                     requireContext(),
@@ -131,10 +137,6 @@ class FavoriteFragment : Fragment() {
                 }
             })
         }
-    }
-
-    companion object {
-
     }
 
     override fun onDestroyView() {

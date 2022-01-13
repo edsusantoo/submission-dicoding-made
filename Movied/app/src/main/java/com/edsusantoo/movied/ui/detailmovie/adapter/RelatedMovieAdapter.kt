@@ -1,6 +1,5 @@
 package com.edsusantoo.movied.ui.detailmovie.adapter
 
-import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -19,7 +18,6 @@ class RelatedMovieAdapter(private val list:List<Movie>?) :RecyclerView.Adapter<R
         return ViewHolder(view)
     }
 
-    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: RelatedMovieAdapter.ViewHolder, position: Int) {
        holder.binding.let {
 
@@ -30,7 +28,11 @@ class RelatedMovieAdapter(private val list:List<Movie>?) :RecyclerView.Adapter<R
                .into(it.imgRelatedMovie)
 
            val date = list?.get(position)?.releaseDate?.split("-")
-           it.tvTitle.text = list?.get(position)?.originalTitle + " (" + (date?.get(0) ?: "") + ")"
+           it.tvTitle.text = it.tvTitle.context.getString(
+               R.string.title_variable_relate_movie,
+               list?.get(position)?.originalTitle,
+               date?.get(0)
+           )
        }
     }
 

@@ -119,25 +119,6 @@ object DataMapper {
             )
         }
 
-
-    fun mapMovieDomainToEntities(domain:Movie):MovieEntity =
-        MovieEntity(
-            idMovie = domain.idMovie,
-            backdropPath = domain.backdropPath,
-            originalTitle = domain.originalTitle,
-            overview = domain.overview,
-            posterPath = domain.posterPath,
-            releaseDate = domain.releaseDate,
-            voteAverage = domain.voteAverage,
-            typeMovie = domain.typeMovie,
-            productionCompanies = domain.productionCompanies,
-            budget = domain.budget,
-            genres = domain.genres,
-            productionCountries = domain.productionCountries,
-            runtime = domain.runtime,
-            tagline = domain.tagline
-        )
-
     fun mapMovieEntitiesToDomain(movieEntity: MovieEntity):Movie=
         Movie(
             idMovie = movieEntity.idMovie,

@@ -24,7 +24,6 @@ class RegisterActivity : AppCompatActivity() {
     private val registerViewModel: RegisterViewModel by viewModels()
     private lateinit var binding: ActivityRegisterBinding
 
-    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityRegisterBinding.inflate(layoutInflater)
@@ -35,9 +34,8 @@ class RegisterActivity : AppCompatActivity() {
 
     }
 
-    @SuppressLint("SetTextI18n")
     private fun initView() {
-        binding.appBar.tvTitle.text = "Sign up"
+        binding.appBar.tvTitle.text = getString(R.string.sign_up)
         binding.appBar.imgBack.setOnClickListener { finish() }
 
         initEditText()

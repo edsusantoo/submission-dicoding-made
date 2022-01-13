@@ -26,8 +26,6 @@ class LoginActivity : AppCompatActivity() {
     private val loginViewModel: LoginViewModel by viewModels()
 
     private lateinit var binding: ActivityLoginBinding
-
-    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
@@ -38,9 +36,8 @@ class LoginActivity : AppCompatActivity() {
 
     }
 
-    @SuppressLint("SetTextI18n")
     private fun initView() {
-        binding.appBar.tvTitle.text = "Login"
+        binding.appBar.tvTitle.text = getString(R.string.login)
         binding.appBar.imgBack.setOnClickListener { finish() }
         initEditText()
 

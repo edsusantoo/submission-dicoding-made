@@ -36,11 +36,6 @@ class UpComingFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initData()
-        initView()
-    }
-
-    private fun initView() {
-
     }
 
     private fun initData() {

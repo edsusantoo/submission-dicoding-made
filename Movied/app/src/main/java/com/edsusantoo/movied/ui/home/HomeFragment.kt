@@ -1,6 +1,5 @@
 package com.edsusantoo.movied.ui.home
 
-import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -13,6 +12,7 @@ import androidx.fragment.app.viewModels
 import com.edsusantoo.core.data.Resource
 import com.edsusantoo.core.domain.model.movie.Movie
 import com.edsusantoo.core.utils.Constants
+import com.edsusantoo.movied.R
 import com.edsusantoo.movied.databinding.FragmentHomeBinding
 import com.edsusantoo.movied.ui.detailmovie.DetailMovieActivity
 import com.edsusantoo.movied.ui.home.adapter.MovieViewPagerAdapter
@@ -57,7 +57,6 @@ class HomeFragment : Fragment() {
         }
     }
 
-    @SuppressLint("SetTextI18n")
     private fun initData() {
         if (activity != null) {
             homeViewModel.moviePopular.observe(viewLifecycleOwner, { movie ->
@@ -93,7 +92,7 @@ class HomeFragment : Fragment() {
 
             homeViewModel.isLogin.observe(viewLifecycleOwner, { user ->
                 if (user != null) {
-                    binding.tvHelloUser.text = "Hello, ${user.username}"
+                    binding.tvHelloUser.text = getString(R.string.hello_variable, user.username)
                 }
             })
         }

@@ -30,12 +30,7 @@ class ProfileFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initData()
         initView()
-    }
-
-    private fun initData() {
-
     }
 
     private fun initView() {
@@ -65,6 +60,11 @@ class ProfileFragment : Fragment() {
                 }
             })
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
     companion object {

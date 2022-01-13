@@ -8,7 +8,7 @@ import com.bumptech.glide.Glide
 import com.edsusantoo.core.domain.model.moviefavorite.MovieFavorite
 import com.edsusantoo.core.utils.Constants
 import com.edsusantoo.movied.R
-import com.edsusantoo.movied.databinding.ItemFavoriteMovieBinding
+import com.edsusantoo.movied.favorite.databinding.ItemFavoriteMovieBinding
 
 class FavoriteMovieAdapter(
     private val list: List<MovieFavorite>?,
