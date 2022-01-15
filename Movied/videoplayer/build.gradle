@@ -25,6 +25,7 @@ android {
             buildConfigField "String", "API_KEY_YOUTUBE", '"AIzaSyBYmxZzmdjWgsq2LzdTCvdMPUNJZ5hrodM"'
         }
         debug {
+            minifyEnabled false
             buildConfigField "String", "API_KEY_YOUTUBE", '"AIzaSyBYmxZzmdjWgsq2LzdTCvdMPUNJZ5hrodM"'
         }
     }
