@@ -7,6 +7,7 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import io.reactivex.disposables.CompositeDisposable
+import okhttp3.CertificatePinner
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -21,10 +22,10 @@ class NetworkModule {
 
     private fun apiKeyInterceptor():Interceptor{
         return Interceptor { chain ->
-            val original  = chain.request()
+            val original = chain.request()
             val originalHttpUrl = original.url
             val url = originalHttpUrl.newBuilder()
-                .addQueryParameter("api_key",Constants.API_KEY_MOVIE)
+                .addQueryParameter("api_key", Constants.API_KEY_MOVIE)
                 .build()
             val requestBuilder = original.newBuilder().url(url)
             val request = requestBuilder.build()
@@ -32,13 +33,20 @@ class NetworkModule {
         }
     }
 
+    private fun certificatePinner(): CertificatePinner {
+        return CertificatePinner.Builder()
+            .add(Constants.BASE_URL_MOVIE, "oD/WAoRPvbez1Y2dfYfuo4yujAcYHXdv1Ivb2v2MOKk=")
+            .build()
+    }
+
     @Provides
-    fun provideOkHttpClient():OkHttpClient{
+    fun provideOkHttpClient(): OkHttpClient {
         return OkHttpClient.Builder()
             .addInterceptor(apiKeyInterceptor())
             .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
             .connectTimeout(120, TimeUnit.SECONDS)
-            .readTimeout(120,TimeUnit.SECONDS)
+            .readTimeout(120, TimeUnit.SECONDS)
+            .certificatePinner(certificatePinner())
             .build()
     }
 
