@@ -60,7 +60,6 @@ class DetailMovieActivity : AppCompatActivity() {
                                         .fitCenter()
                                         .into(binding.imgBackdropPath)
 
-
                                     Glide.with(binding.root)
                                         .load(
                                             Constants.BASE_URL_IMAGE_MOVIE +
@@ -69,8 +68,6 @@ class DetailMovieActivity : AppCompatActivity() {
                                         .error(R.drawable.movie_poster_template)
                                         .fitCenter()
                                         .into(binding.imgPosterPath)
-
-
 
                                     binding.tvTitle.text = movie.data?.originalTitle
                                     binding.tvDuration.text =
@@ -98,8 +95,10 @@ class DetailMovieActivity : AppCompatActivity() {
                                         val site = movie.data?.typeMovie
                                         val uri =
                                             Uri.parse(
-                                                ("movied://videoplayer?video=${video}&" +
-                                                    "site=${site}").trim()
+                                                (
+                                                    "movied://videoplayer?video=$video&" +
+                                                        "site=$site"
+                                                    ).trim()
                                             )
                                         startActivity(Intent(Intent.ACTION_VIEW, uri))
                                     }
@@ -173,7 +172,6 @@ class DetailMovieActivity : AppCompatActivity() {
                         binding.toggleFavorite.isChecked = it.isFavorite == true
                     }
                 })
-
             }
         } else {
             val data = intent.getParcelableExtra<Movie>(Constants.INTENT_DATA_PARCELABLE)
@@ -193,7 +191,6 @@ class DetailMovieActivity : AppCompatActivity() {
                                         .fitCenter()
                                         .into(binding.imgBackdropPath)
 
-
                                     Glide.with(binding.root)
                                         .load(
                                             Constants.BASE_URL_IMAGE_MOVIE +
@@ -202,8 +199,6 @@ class DetailMovieActivity : AppCompatActivity() {
                                         .error(R.drawable.movie_poster_template)
                                         .fitCenter()
                                         .into(binding.imgPosterPath)
-
-
 
                                     binding.tvTitle.text = movie.data?.originalTitle
                                     binding.tvDuration.text =
@@ -232,8 +227,10 @@ class DetailMovieActivity : AppCompatActivity() {
 
                                         val uri =
                                             Uri.parse(
-                                                ("movied://videoplayer?video=${video}&" +
-                                                    "site=${site}").trim()
+                                                (
+                                                    "movied://videoplayer?video=$video&" +
+                                                        "site=$site"
+                                                    ).trim()
                                             )
                                         startActivity(Intent(Intent.ACTION_VIEW, uri))
                                     }
@@ -309,11 +306,8 @@ class DetailMovieActivity : AppCompatActivity() {
                         }
                     }
                 })
-
-
             }
         }
-
     }
 
     private fun initView() {

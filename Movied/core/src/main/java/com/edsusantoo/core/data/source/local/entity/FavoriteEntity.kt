@@ -13,8 +13,8 @@ data class FavoriteEntity(
     @PrimaryKey
     @NonNull
     @ColumnInfo(name = "id_favorite")
-    var idFavorite:String,
+    var idFavorite: String,
 
     @ColumnInfo(name = "favorite")
-    var isFavorite:Boolean,
-):Parcelable
+    var isFavorite: Boolean,
+) : Parcelable

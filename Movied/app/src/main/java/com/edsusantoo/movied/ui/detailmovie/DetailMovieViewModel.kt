@@ -12,19 +12,18 @@ import javax.inject.Inject
 class DetailMovieViewModel @Inject constructor(
     private val movieUseCase: MovieUseCase,
     private val castUseCase: CastUseCase
-    ): ViewModel() {
-    fun detailMovie(id:String,type:String) =
-        LiveDataReactiveStreams.fromPublisher(movieUseCase.getDetailMovie(id,type))
+) : ViewModel() {
+    fun detailMovie(id: String, type: String) =
+        LiveDataReactiveStreams.fromPublisher(movieUseCase.getDetailMovie(id, type))
 
-    fun castMovie(id:String) =
+    fun castMovie(id: String) =
         LiveDataReactiveStreams.fromPublisher(castUseCase.getCastMovie(id))
 
-    fun relatedMovie(id:String) =
+    fun relatedMovie(id: String) =
         LiveDataReactiveStreams.fromPublisher(movieUseCase.getRelateMovie(id))
 
     fun setFavorite(favorite: Favorite) = movieUseCase.setFavoriteMovie(favorite)
 
-    fun getLocalFavorite(id:String) =
+    fun getLocalFavorite(id: String) =
         LiveDataReactiveStreams.fromPublisher(movieUseCase.getLocalDetailFavoriteMovie(id))
-
 }

@@ -73,5 +73,4 @@ object MoviedUtils {
     fun FragmentManager.instantiate(className: String): Fragment {
         return fragmentFactory.instantiate(ClassLoader.getSystemClassLoader(), className)
     }
-
 }

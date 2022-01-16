@@ -11,10 +11,8 @@ import io.reactivex.Flowable
 @Dao
 interface CastDao {
     @Query("SELECT * FROM `cast` WHERE id_movie = :idMovie")
-    fun getCastMovie(idMovie:String):Flowable<List<CastEntity>>
+    fun getCastMovie(idMovie: String): Flowable<List<CastEntity>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertCast(movie: List<CastEntity>): Completable
-
-
 }

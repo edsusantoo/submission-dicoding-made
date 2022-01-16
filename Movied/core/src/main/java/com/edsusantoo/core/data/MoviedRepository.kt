@@ -53,7 +53,7 @@ class MoviedRepository @Inject constructor(
         }
     }
 
-    override fun getDetailMovie(id: String,type: String): Flowable<Resource<Movie>> {
+    override fun getDetailMovie(id: String, type: String): Flowable<Resource<Movie>> {
         return object : NetworkBoundResource<Movie, Movie>() {
             override fun loadFromDB(): Flowable<Movie> {
                 return localDataSource.getDetailMovie(id)
@@ -79,9 +79,10 @@ class MoviedRepository @Inject constructor(
     }
 
     override fun getCastMovie(id: String): Flowable<Resource<List<Cast>>> {
-        return object : NetworkBoundResource<List<Cast>, CastResponse>(){
+        return object : NetworkBoundResource<List<Cast>, CastResponse>() {
             override fun loadFromDB(): Flowable<List<Cast>> {
-                return localDataSource.getCastMovie(id).map { DataMapper.mapListCastEntitiesToDomain(it) }
+                return localDataSource.getCastMovie(id)
+                    .map { DataMapper.mapListCastEntitiesToDomain(it) }
             }
 
             override fun shouldFetch(data: List<Cast>?): Boolean {
@@ -99,7 +100,6 @@ class MoviedRepository @Inject constructor(
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe()
             }
-
         }.asFlowable()
     }
 
@@ -121,7 +121,6 @@ class MoviedRepository @Inject constructor(
                     }
                     else -> Log.e("Network Error", "ERROR YA GES YA!!")
                 }
-
             }
         compositeDisposable.add(client)
         return result.toFlowable(BackpressureStrategy.BUFFER)
@@ -159,7 +158,6 @@ class MoviedRepository @Inject constructor(
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe()
             }
-
         }.asFlowable()
     }
 
@@ -264,7 +262,7 @@ class MoviedRepository @Inject constructor(
             }
 
             override fun createCallNetwork(): Flowable<ApiResponse<ListMovieResponse>> {
-                return when(typeMovie){
+                return when (typeMovie) {
                     Constants.TYPE_MOVIE_POPULAR -> {
                         remoteDataSource.getMoviePopular()
                     }
@@ -274,20 +272,18 @@ class MoviedRepository @Inject constructor(
                     Constants.TYPE_MOVIE_UPCOMING -> {
                         remoteDataSource.getUpComingMovie()
                     }
-                    else  -> throw IllegalStateException("Invalid rating param value")
+                    else -> throw IllegalStateException("Invalid rating param value")
                 }
             }
 
             override fun saveCallResultToDB(data: ListMovieResponse) {
-                val mapper = DataMapper.mapListMovieResponseToEntities(data,typeMovie)
+                val mapper = DataMapper.mapListMovieResponseToEntities(data, typeMovie)
 
                 localDataSource.insertMovie(mapper)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe()
             }
-
         }.asFlowable()
     }
-
 }

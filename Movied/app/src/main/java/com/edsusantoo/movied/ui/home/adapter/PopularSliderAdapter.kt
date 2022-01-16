@@ -51,6 +51,4 @@ class PopularSliderAdapter(
 
     inner class ViewHolder(val binding: ItemSliderImageBinding) :
         SliderViewAdapter.ViewHolder(binding.root)
-
-
 }

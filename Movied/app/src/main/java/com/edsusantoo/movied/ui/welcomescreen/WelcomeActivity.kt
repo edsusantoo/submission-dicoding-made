@@ -22,7 +22,6 @@ class WelcomeActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         initView()
-
     }
 
     private fun initView() {
@@ -60,5 +59,4 @@ class WelcomeActivity : AppCompatActivity() {
             })
         }
     }
-
 }

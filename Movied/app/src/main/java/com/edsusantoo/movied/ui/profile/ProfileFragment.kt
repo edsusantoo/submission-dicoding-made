@@ -21,7 +21,8 @@ class ProfileFragment : Fragment() {
     private val binding get() = _binding!!
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentProfileBinding.inflate(inflater, container, false)
@@ -37,7 +38,6 @@ class ProfileFragment : Fragment() {
         binding.btnEditProfile.setOnClickListener {
             val editProfile = EditProfileFragment()
             editProfile.show(childFragmentManager, EditProfileFragment.TAG)
-
         }
 
         binding.btnLogout.setOnClickListener {

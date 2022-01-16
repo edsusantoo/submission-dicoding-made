@@ -13,18 +13,18 @@ data class CastEntity(
     @PrimaryKey
     @NonNull
     @ColumnInfo(name = "id_cast")
-    var idCast:String,
+    var idCast: String,
 
     @NonNull
     @ColumnInfo(name = "id_movie")
-    var idMovie:String,
+    var idMovie: String,
 
     @ColumnInfo(name = "original_name")
-    var originalName:String,
+    var originalName: String,
 
     @ColumnInfo(name = "character")
-    var character:String,
+    var character: String,
 
     @ColumnInfo(name = "porifle_path")
-    var profilePath:String?
-):Parcelable
+    var profilePath: String?
+) : Parcelable

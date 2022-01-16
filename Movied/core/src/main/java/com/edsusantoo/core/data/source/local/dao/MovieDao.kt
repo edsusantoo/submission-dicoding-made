@@ -31,8 +31,8 @@ interface MovieDao {
     fun insertFavorite(favoriteEntity: FavoriteEntity)
 
     @Query("SELECT * FROM movie INNER JOIN favorite ON favorite.id_favorite = id_movie WHERE id_movie = :idMovie")
-    fun getFavoriteDetailMovie(idMovie: String):Flowable<MovieFavorite>
+    fun getFavoriteDetailMovie(idMovie: String): Flowable<MovieFavorite>
 
     @Query("SELECT * FROM movie INNER JOIN favorite ON favorite.id_favorite = id_movie WHERE favorite = 1")
-    fun getFavoriteMovie():Flowable<List<MovieFavorite>>
+    fun getFavoriteMovie(): Flowable<List<MovieFavorite>>
 }

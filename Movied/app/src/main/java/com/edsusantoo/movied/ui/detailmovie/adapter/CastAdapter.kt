@@ -9,9 +9,9 @@ import com.edsusantoo.core.utils.Constants
 import com.edsusantoo.movied.R
 import com.edsusantoo.movied.databinding.ItemCastBinding
 
-class CastAdapter(private val list:List<Cast>?) : RecyclerView.Adapter<CastAdapter.ViewHolder>() {
+class CastAdapter(private val list: List<Cast>?) : RecyclerView.Adapter<CastAdapter.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CastAdapter.ViewHolder {
-        val view = ItemCastBinding.inflate(LayoutInflater.from(parent.context),parent,false)
+        val view = ItemCastBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ViewHolder(view)
     }
 
@@ -42,5 +42,5 @@ class CastAdapter(private val list:List<Cast>?) : RecyclerView.Adapter<CastAdapt
             0
     }
 
-    inner class ViewHolder(val binding:ItemCastBinding) : RecyclerView.ViewHolder(binding.root)
+    inner class ViewHolder(val binding: ItemCastBinding) : RecyclerView.ViewHolder(binding.root)
 }

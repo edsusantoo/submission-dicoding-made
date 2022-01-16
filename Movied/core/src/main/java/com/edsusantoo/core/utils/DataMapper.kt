@@ -14,7 +14,10 @@ import com.edsusantoo.core.domain.model.user.User
 import com.edsusantoo.core.domain.model.moviefavorite.MovieFavorite as MovieFavoriteDomain
 
 object DataMapper {
-    fun mapListMovieResponseToEntities(response:ListMovieResponse,type:String):List<MovieEntity>{
+    fun mapListMovieResponseToEntities(
+        response: ListMovieResponse,
+        type: String
+    ): List<MovieEntity> {
         val movieEntityArray = ArrayList<MovieEntity>()
         response.results.map {
             val movie = MovieEntity(
@@ -32,7 +35,7 @@ object DataMapper {
         return movieEntityArray
     }
 
-    fun mapListMovieEntitiesToDomain(movieEntity: List<MovieEntity>):List<Movie> =
+    fun mapListMovieEntitiesToDomain(movieEntity: List<MovieEntity>): List<Movie> =
         movieEntity.map {
             Movie(
                 idMovie = it.idMovie,
@@ -52,7 +55,7 @@ object DataMapper {
             )
         }
 
-    fun mapListMovieResponseToDomain(response:ListMovieResponse):List<Movie> =
+    fun mapListMovieResponseToDomain(response: ListMovieResponse): List<Movie> =
         response.results.map {
             Movie(
                 idMovie = it.id.toString(),
@@ -93,7 +96,7 @@ object DataMapper {
             typeVideo = detail.typeVideo
         )
 
-    fun mapCastResponseToEntities(response:CastResponse):List<CastEntity> {
+    fun mapCastResponseToEntities(response: CastResponse): List<CastEntity> {
         val castEntityArray = ArrayList<CastEntity>()
         response.cast.map {
             val cast = CastEntity(
@@ -108,7 +111,7 @@ object DataMapper {
         return castEntityArray
     }
 
-    fun mapListCastEntitiesToDomain(castEntity: List<CastEntity>):List<Cast> =
+    fun mapListCastEntitiesToDomain(castEntity: List<CastEntity>): List<Cast> =
         castEntity.map {
             Cast(
                 idCast = it.idCast,
@@ -119,7 +122,7 @@ object DataMapper {
             )
         }
 
-    fun mapMovieEntitiesToDomain(movieEntity: MovieEntity):Movie=
+    fun mapMovieEntitiesToDomain(movieEntity: MovieEntity): Movie =
         Movie(
             idMovie = movieEntity.idMovie,
             backdropPath = movieEntity.backdropPath,

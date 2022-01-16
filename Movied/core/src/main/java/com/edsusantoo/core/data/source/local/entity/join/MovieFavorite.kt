@@ -8,17 +8,17 @@ import kotlinx.parcelize.Parcelize
 data class MovieFavorite(
 
     @ColumnInfo(name = "id_movie")
-    val idMovie:String?=null,
+    val idMovie: String? = null,
 
     @ColumnInfo(name = "backdrop_path")
-    val backdropPath:String?=null,
+    val backdropPath: String? = null,
 
-    val budget:String?=null,
+    val budget: String? = null,
 
-    val genres:String?=null,
+    val genres: String? = null,
 
     @ColumnInfo(name = "original_title")
-    val originalTitle:String?=null,
+    val originalTitle: String? = null,
 
     val overview: String? = null,
 
@@ -53,7 +53,7 @@ data class MovieFavorite(
     @ColumnInfo(name = "type_video")
     val typeVideo: String? = null,
 
-    //type movie : popular, up_coming, coming_soon
+    // type movie : popular, up_coming, coming_soon
     @ColumnInfo(name = "type_movie")
     val typeMovie: String? = null
-):Parcelable
+) : Parcelable

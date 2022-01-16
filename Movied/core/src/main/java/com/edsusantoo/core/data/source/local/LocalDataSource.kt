@@ -17,7 +17,7 @@ import javax.inject.Inject
 class LocalDataSource @Inject constructor(
     private val userDao: UserDao,
     private val movieDao: MovieDao,
-    private val castDao:CastDao
+    private val castDao: CastDao
 ) {
 
     fun searchMovie(query: String): Flowable<List<MovieEntity>> = movieDao.searchMovie(query)
@@ -30,7 +30,6 @@ class LocalDataSource @Inject constructor(
 
     fun setFavoriteMovie(favorite: FavoriteEntity) =
         movieDao.insertFavorite(favorite)
-
 
     fun updateDetailMovie(movieEntity: MovieEntity, movieResponse: Movie): Completable {
         movieEntity.budget = movieResponse.budget.toString()

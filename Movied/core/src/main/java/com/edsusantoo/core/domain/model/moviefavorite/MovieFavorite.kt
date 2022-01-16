@@ -38,7 +38,7 @@ data class MovieFavorite(
 
     val typeVideo: String? = null,
 
-    //type movie : popular, up_coming, coming_soon
+    // type movie : popular, up_coming, coming_soon
     val typeMovie: String? = null
 
 ) : Parcelable

@@ -33,7 +33,6 @@ class LoginActivity : AppCompatActivity() {
 
         initView()
         initData()
-
     }
 
     private fun initView() {
@@ -103,7 +102,6 @@ class LoginActivity : AppCompatActivity() {
                                                 )
                                                 finish()
                                             }
-
                                         }
                                     }
                                 }
@@ -127,7 +125,6 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun initData() {
-
     }
 
     @SuppressLint("CheckResult")
@@ -155,7 +152,8 @@ class LoginActivity : AppCompatActivity() {
             passwordStream,
             { emailInvalid: Boolean, passwordInvalid: Boolean ->
                 !emailInvalid && !passwordInvalid
-            })
+            }
+        )
         invalidStream.subscribe {
             if (it) {
                 binding.btnLogin.isEnabled = true

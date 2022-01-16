@@ -38,5 +38,5 @@ class DatabaseModule {
     fun provideUserDao(database: MoviedDatabase): UserDao = database.userDao()
 
     @Provides
-    fun provideCastDao(database: MoviedDatabase):CastDao = database.castDao()
+    fun provideCastDao(database: MoviedDatabase): CastDao = database.castDao()
 }

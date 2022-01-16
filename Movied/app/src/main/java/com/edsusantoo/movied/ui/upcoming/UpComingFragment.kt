@@ -26,7 +26,8 @@ class UpComingFragment : Fragment() {
     private val binding get() = _binding!!
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentUpComingBinding.inflate(inflater, container, false)
@@ -48,14 +49,20 @@ class UpComingFragment : Fragment() {
                             binding.loading.isVisible = false
                             binding.rvUpComing.layoutManager =
                                 GridLayoutManager(requireContext(), 2)
-                            binding.rvUpComing.adapter = MovieAnyAdapter(movie.data, object : MovieAnyAdapter.MovieAnyListener{
-                                override fun onClickListener(data: Movie,position:Int) {
-                                    val intent = Intent(activity, DetailMovieActivity::class.java)
-                                    intent.putExtra(Constants.INTENT_DATA_PARCELABLE,movie.data?.get(position))
-                                    startActivity(intent)
+                            binding.rvUpComing.adapter = MovieAnyAdapter(
+                                movie.data,
+                                object : MovieAnyAdapter.MovieAnyListener {
+                                    override fun onClickListener(data: Movie, position: Int) {
+                                        val intent =
+                                            Intent(activity, DetailMovieActivity::class.java)
+                                        intent.putExtra(
+                                            Constants.INTENT_DATA_PARCELABLE,
+                                            movie.data?.get(position)
+                                        )
+                                        startActivity(intent)
+                                    }
                                 }
-
-                            })
+                            )
                         }
                         is Resource.Error -> {
                             binding.loading.isVisible = false
@@ -71,7 +78,6 @@ class UpComingFragment : Fragment() {
         super.onDestroy()
         _binding = null
     }
-
 
     companion object {
         fun getInstance() = UpComingFragment()

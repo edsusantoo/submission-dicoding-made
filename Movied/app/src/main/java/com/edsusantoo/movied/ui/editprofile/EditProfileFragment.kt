@@ -32,7 +32,8 @@ class EditProfileFragment : BottomSheetDialogFragment() {
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentEditProfileBinding.inflate(inflater, container, false)
@@ -48,7 +49,6 @@ class EditProfileFragment : BottomSheetDialogFragment() {
 
     private fun initView() {
         initEditText()
-
     }
 
     private fun initData() {
@@ -119,14 +119,14 @@ class EditProfileFragment : BottomSheetDialogFragment() {
             showPasswordMinimalAlert(it)
         }
 
-
         val invalidFieldStream = Observable.combineLatest(
             usernameStream,
             emailStream,
             passwordStream,
             { usernameInvalid: Boolean, emailInvalid: Boolean, passwordInvalid: Boolean ->
                 !usernameInvalid && !emailInvalid && !passwordInvalid
-            })
+            }
+        )
         invalidFieldStream.subscribe { isValid ->
             if (isValid) {
                 binding.btnUpdate.isEnabled = true
@@ -161,7 +161,6 @@ class EditProfileFragment : BottomSheetDialogFragment() {
         binding.tvLabelErrorPassword.text =
             if (isNotValid) getString(R.string.password_not_valid) else ""
     }
-
 
     companion object {
         const val TAG = "EditProfileBottomSheetFragment"

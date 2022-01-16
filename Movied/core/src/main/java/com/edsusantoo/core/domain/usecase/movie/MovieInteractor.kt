@@ -32,6 +32,4 @@ class MovieInteractor @Inject constructor(private val moviedRepository: IMoviedR
 
     override fun getLocalFavoriteMovie(): Flowable<List<MovieFavorite>> =
         moviedRepository.getLocalFavoriteMovie()
-
-
 }

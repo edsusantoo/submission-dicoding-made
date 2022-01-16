@@ -31,7 +31,6 @@ class RegisterActivity : AppCompatActivity() {
 
         initView()
         initData()
-
     }
 
     private fun initView() {
@@ -92,7 +91,6 @@ class RegisterActivity : AppCompatActivity() {
                                     Toast.LENGTH_SHORT
                                 ).show()
                             }
-
                         }
                         is Resource.Error -> {
                             Toast.makeText(this, it.message, Toast.LENGTH_SHORT).show()
@@ -155,7 +153,8 @@ class RegisterActivity : AppCompatActivity() {
             confirmPasswordStream,
             { usernameInvalid: Boolean, emailInvalid: Boolean, passwordInvalid: Boolean, confirmationPasswordInvalid: Boolean ->
                 !usernameInvalid && !emailInvalid && !passwordInvalid && !confirmationPasswordInvalid
-            })
+            }
+        )
         invalidFieldStream.subscribe { isValid ->
             if (isValid) {
                 binding.btnCreateAccount.isEnabled = true

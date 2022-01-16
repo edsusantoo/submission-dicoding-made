@@ -27,7 +27,8 @@ class NowShowingFragment : Fragment() {
     private val binding get() = _binding!!
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentNowShowingBinding.inflate(inflater, container, false)
@@ -41,7 +42,6 @@ class NowShowingFragment : Fragment() {
     }
 
     private fun initView() {
-
     }
 
     private fun initData() {
@@ -54,13 +54,20 @@ class NowShowingFragment : Fragment() {
                             binding.loading.isVisible = false
                             binding.rvNowShowing.layoutManager =
                                 GridLayoutManager(requireContext(), 2)
-                            binding.rvNowShowing.adapter = MovieAnyAdapter(movie.data,object : MovieAnyAdapter.MovieAnyListener{
-                                override fun onClickListener(data: Movie,position:Int) {
-                                    val intent = Intent(activity,DetailMovieActivity::class.java)
-                                    intent.putExtra(Constants.INTENT_DATA_PARCELABLE,movie.data?.get(position))
-                                    startActivity(intent)
+                            binding.rvNowShowing.adapter = MovieAnyAdapter(
+                                movie.data,
+                                object : MovieAnyAdapter.MovieAnyListener {
+                                    override fun onClickListener(data: Movie, position: Int) {
+                                        val intent =
+                                            Intent(activity, DetailMovieActivity::class.java)
+                                        intent.putExtra(
+                                            Constants.INTENT_DATA_PARCELABLE,
+                                            movie.data?.get(position)
+                                        )
+                                        startActivity(intent)
+                                    }
                                 }
-                            })
+                            )
                         }
                         is Resource.Error -> {
                             binding.loading.isVisible = false
@@ -80,5 +87,4 @@ class NowShowingFragment : Fragment() {
         super.onDestroy()
         _binding = null
     }
-
 }

@@ -21,7 +21,6 @@ import com.edsusantoo.movied.ui.adapter.MovieAnyAdapter
 import com.edsusantoo.movied.ui.detailmovie.DetailMovieActivity
 import dagger.hilt.android.AndroidEntryPoint
 
-
 @AndroidEntryPoint
 class SearchFragment : Fragment() {
     private val searchViewModel: SearchViewModel by viewModels()
@@ -29,9 +28,9 @@ class SearchFragment : Fragment() {
     private var _binding: FragmentSearchBinding? = null
     private val binding get() = _binding!!
 
-
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentSearchBinding.inflate(inflater, container, false)
@@ -45,7 +44,8 @@ class SearchFragment : Fragment() {
 
     private fun initView() {
         if (activity != null) {
-            binding.search.setOnQueryTextListener(object : SearchView.OnQueryTextListener,
+            binding.search.setOnQueryTextListener(object :
+                SearchView.OnQueryTextListener,
                 androidx.appcompat.widget.SearchView.OnQueryTextListener {
                 override fun onQueryTextSubmit(p0: String?): Boolean {
                     return true
@@ -74,7 +74,8 @@ class SearchFragment : Fragment() {
                                                 binding.rvSearch.layoutManager =
                                                     GridLayoutManager(context, 2)
                                                 binding.rvSearch.adapter =
-                                                    MovieAnyAdapter(movie.data,
+                                                    MovieAnyAdapter(
+                                                        movie.data,
                                                         object : MovieAnyAdapter.MovieAnyListener {
                                                             override fun onClickListener(
                                                                 data: Movie,
@@ -90,8 +91,8 @@ class SearchFragment : Fragment() {
                                                                 )
                                                                 startActivity(intent)
                                                             }
-
-                                                        })
+                                                        }
+                                                    )
                                             }
                                             is Resource.Error -> {
                                                 Toast.makeText(
@@ -108,7 +109,6 @@ class SearchFragment : Fragment() {
                                     }
                                 })
                         }, 800)
-
                     } else {
                         binding.groupSearchLabel.isVisible = true
                         binding.loading.isVisible = false
@@ -117,7 +117,6 @@ class SearchFragment : Fragment() {
                     }
                     return true
                 }
-
             })
         }
     }
@@ -130,5 +129,4 @@ class SearchFragment : Fragment() {
     companion object {
         fun getInstance() = SearchFragment()
     }
-
 }

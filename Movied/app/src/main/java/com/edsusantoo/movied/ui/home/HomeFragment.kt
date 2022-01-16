@@ -29,7 +29,8 @@ class HomeFragment : Fragment() {
     private val binding get() = _binding!!
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
@@ -66,7 +67,8 @@ class HomeFragment : Fragment() {
                         is Resource.Success -> {
                             binding.loadingSlider.isVisible = false
                             binding.imageSlider.setSliderAdapter(
-                                PopularSliderAdapter(movie.data,
+                                PopularSliderAdapter(
+                                    movie.data,
                                     object : PopularSliderAdapter.PopularSlideListener {
                                         override fun onClickListener(data: Movie, position: Int) {
                                             val intent =
@@ -77,8 +79,8 @@ class HomeFragment : Fragment() {
                                             )
                                             startActivity(intent)
                                         }
-
-                                    })
+                                    }
+                                )
                             )
                             binding.imageSlider.setIndicatorAnimation(IndicatorAnimationType.WORM)
                         }
@@ -106,6 +108,4 @@ class HomeFragment : Fragment() {
     companion object {
         fun getInstance() = HomeFragment()
     }
-
-
 }

@@ -1,6 +1,5 @@
 package com.edsusantoo.core.data.source.remote.response.movie.video
 
-
 import com.google.gson.annotations.SerializedName
 
 data class Result(

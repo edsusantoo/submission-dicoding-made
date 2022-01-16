@@ -11,18 +11,18 @@ import retrofit2.http.Query
 
 interface ApiService {
     @GET("movie/popular")
-    fun getMoviePopular():Flowable<ListMovieResponse>
+    fun getMoviePopular(): Flowable<ListMovieResponse>
 
     @GET("movie/now_playing")
-    fun getNowPlayingMovie():Flowable<ListMovieResponse>
+    fun getNowPlayingMovie(): Flowable<ListMovieResponse>
 
     @GET("movie/upcoming")
-    fun getUpComingMovie():Flowable<ListMovieResponse>
+    fun getUpComingMovie(): Flowable<ListMovieResponse>
 
     @GET("movie/{id_movie}")
     fun getDetailMovie(
-        @Path("id_movie") id:String
-    ):Flowable<DetailMovieResponse>
+        @Path("id_movie") id: String
+    ): Flowable<DetailMovieResponse>
 
     @GET("movie/{id_movie}/credits")
     fun getCastMovie(

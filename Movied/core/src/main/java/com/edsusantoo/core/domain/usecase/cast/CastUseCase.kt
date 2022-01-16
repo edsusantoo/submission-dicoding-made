@@ -5,5 +5,5 @@ import com.edsusantoo.core.domain.model.cast.Cast
 import io.reactivex.Flowable
 
 interface CastUseCase {
-    fun getCastMovie(idMovie:String): Flowable<Resource<List<Cast>>>
+    fun getCastMovie(idMovie: String): Flowable<Resource<List<Cast>>>
 }

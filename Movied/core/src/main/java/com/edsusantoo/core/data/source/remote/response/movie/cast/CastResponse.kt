@@ -1,6 +1,5 @@
 package com.edsusantoo.core.data.source.remote.response.movie.cast
 
-
 import com.google.gson.annotations.SerializedName
 
 data class CastResponse(

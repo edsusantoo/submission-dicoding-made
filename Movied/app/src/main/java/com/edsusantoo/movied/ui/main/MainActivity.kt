@@ -13,7 +13,7 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
-    private lateinit var binding:ActivityMainBinding
+    private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,10 +23,10 @@ class MainActivity : AppCompatActivity() {
         initView()
     }
 
-    private fun initView(){
+    private fun initView() {
         setCurrentFragment(HomeFragment.getInstance())
         binding.bottomNav.setOnItemSelectedListener {
-            when(it.itemId){
+            when (it.itemId) {
                 R.id.nav_home -> setCurrentFragment(HomeFragment.getInstance())
                 R.id.nav_search -> setCurrentFragment(SearchFragment.getInstance())
                 R.id.nav_favorite -> setCurrentFragment(supportFragmentManager.instantiate("com.edsusantoo.movied.favorite.FavoriteFragment"))
@@ -35,12 +35,12 @@ class MainActivity : AppCompatActivity() {
             }
             return@setOnItemSelectedListener true
         }
-        binding.bottomNav.setOnItemReselectedListener {  }
+        binding.bottomNav.setOnItemReselectedListener { }
     }
 
-    private fun setCurrentFragment(fragment:Fragment){
+    private fun setCurrentFragment(fragment: Fragment) {
         supportFragmentManager.beginTransaction().apply {
-            replace(R.id.frame_container,fragment)
+            replace(R.id.frame_container, fragment)
             commit()
         }
     }

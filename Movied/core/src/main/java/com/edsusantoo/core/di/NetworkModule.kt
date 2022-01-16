@@ -20,7 +20,7 @@ import java.util.concurrent.TimeUnit
 @InstallIn(SingletonComponent::class)
 class NetworkModule {
 
-    private fun apiKeyInterceptor():Interceptor{
+    private fun apiKeyInterceptor(): Interceptor {
         return Interceptor { chain ->
             val original = chain.request()
             val originalHttpUrl = original.url
@@ -53,7 +53,7 @@ class NetworkModule {
     }
 
     @Provides
-    fun provideApiService(client:OkHttpClient):ApiService{
+    fun provideApiService(client: OkHttpClient): ApiService {
         val retrofit = Retrofit.Builder()
             .baseUrl(Constants.BASE_URL_MOVIE)
             .addConverterFactory(GsonConverterFactory.create())
@@ -64,6 +64,5 @@ class NetworkModule {
     }
 
     @Provides
-    fun provideCompositeDisposable():CompositeDisposable = CompositeDisposable()
-
+    fun provideCompositeDisposable(): CompositeDisposable = CompositeDisposable()
 }

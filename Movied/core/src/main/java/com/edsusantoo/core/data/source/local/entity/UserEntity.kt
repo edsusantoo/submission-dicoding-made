@@ -27,4 +27,4 @@ data class UserEntity(
 
     @ColumnInfo(name = "is_login")
     var isLogin: Boolean
-):Parcelable
+) : Parcelable

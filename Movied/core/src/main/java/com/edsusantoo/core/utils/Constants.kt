@@ -11,6 +11,4 @@ object Constants {
     const val INTENT_DATA_PARCELABLE = "intent_data_parcelable"
     const val INTENT_DATA_TYPE = "intent_data_type"
     const val TYPE_DETAIL_FAVORITE_MOVIE = "favorite_movie"
-
-
 }

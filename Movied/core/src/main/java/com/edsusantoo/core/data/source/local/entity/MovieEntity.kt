@@ -13,7 +13,7 @@ data class MovieEntity(
     @PrimaryKey
     @NonNull
     @ColumnInfo(name = "id_movie")
-    var idMovie:String,
+    var idMovie: String,
 
     @ColumnInfo(name = "backdrop_path")
     var backdropPath: String? = null,
@@ -57,8 +57,8 @@ data class MovieEntity(
     @ColumnInfo(name = "type_video")
     var typeVideo: String? = null,
 
-    //type movie : popular, up_coming, coming_soon
+    // type movie : popular, up_coming, coming_soon
     @ColumnInfo(name = "type_movie")
     var typeMovie: String? = null
 
-):Parcelable
+) : Parcelable

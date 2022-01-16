@@ -9,31 +9,32 @@ import com.edsusantoo.core.utils.Constants
 import com.edsusantoo.movied.R
 import com.edsusantoo.movied.databinding.ItemMovie2Binding
 
-class RelatedMovieAdapter(private val list:List<Movie>?) :RecyclerView.Adapter<RelatedMovieAdapter.ViewHolder>() {
+class RelatedMovieAdapter(private val list: List<Movie>?) :
+    RecyclerView.Adapter<RelatedMovieAdapter.ViewHolder>() {
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
     ): RelatedMovieAdapter.ViewHolder {
-        val view = ItemMovie2Binding.inflate(LayoutInflater.from(parent.context),parent,false)
+        val view = ItemMovie2Binding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: RelatedMovieAdapter.ViewHolder, position: Int) {
-       holder.binding.let {
+        holder.binding.let {
 
-           Glide.with(it.root)
-               .load(Constants.BASE_URL_IMAGE_MOVIE + list?.get(position)?.backdropPath)
-               .error(R.drawable.movie_backdrop_path_template)
-               .fitCenter()
-               .into(it.imgRelatedMovie)
+            Glide.with(it.root)
+                .load(Constants.BASE_URL_IMAGE_MOVIE + list?.get(position)?.backdropPath)
+                .error(R.drawable.movie_backdrop_path_template)
+                .fitCenter()
+                .into(it.imgRelatedMovie)
 
-           val date = list?.get(position)?.releaseDate?.split("-")
-           it.tvTitle.text = it.tvTitle.context.getString(
-               R.string.title_variable_relate_movie,
-               list?.get(position)?.originalTitle,
-               date?.get(0)
-           )
-       }
+            val date = list?.get(position)?.releaseDate?.split("-")
+            it.tvTitle.text = it.tvTitle.context.getString(
+                R.string.title_variable_relate_movie,
+                list?.get(position)?.originalTitle,
+                date?.get(0)
+            )
+        }
     }
 
     override fun getItemCount(): Int {
@@ -46,6 +47,5 @@ class RelatedMovieAdapter(private val list:List<Movie>?) :RecyclerView.Adapter<R
             0
     }
 
-    inner class ViewHolder(val binding:ItemMovie2Binding) : RecyclerView.ViewHolder(binding.root)
-
+    inner class ViewHolder(val binding: ItemMovie2Binding) : RecyclerView.ViewHolder(binding.root)
 }
