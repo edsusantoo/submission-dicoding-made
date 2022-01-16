@@ -70,4 +70,7 @@ dependencies {
     // optional - RxJava2 support
     api "androidx.datastore:datastore-preferences-rxjava2:$data_store_version"
 
+    implementation "net.zetetic:android-database-sqlcipher:4.4.0"
+    implementation "androidx.sqlite:sqlite-ktx:2.2.0"
+
 }
