@@ -9,7 +9,10 @@ import com.edsusantoo.core.utils.Constants
 import com.edsusantoo.movied.R
 import com.edsusantoo.movied.databinding.ItemMovie1Binding
 
-class MovieAnyAdapter(private val list: List<Movie>?,private val movieAnyListener: MovieAnyListener) :
+class MovieAnyAdapter(
+    private val list: List<Movie>?,
+    private val movieAnyListener: MovieAnyListener
+) :
     RecyclerView.Adapter<MovieAnyAdapter.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieAnyAdapter.ViewHolder {
         val view = ItemMovie1Binding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -34,18 +37,17 @@ class MovieAnyAdapter(private val list: List<Movie>?,private val movieAnyListene
             } else {
                 it.circularRate.progress = 0
             }
-
         }
 
         holder.itemView.setOnClickListener {
-            list?.get(position)?.let { it1 -> movieAnyListener.onClickListener(it1,position) }
+            list?.get(position)?.let { it1 -> movieAnyListener.onClickListener(it1, position) }
         }
     }
 
     override fun getItemCount(): Int {
         return if (list != null)
             if (list.isNotEmpty())
-            //to fix lagging recyclerview
+            // to fix lagging recyclerview
                 if (list.size >= 15)
                     15
                 else
@@ -57,7 +59,7 @@ class MovieAnyAdapter(private val list: List<Movie>?,private val movieAnyListene
     }
 
     interface MovieAnyListener {
-        fun onClickListener(data : Movie,position: Int)
+        fun onClickListener(data: Movie, position: Int)
     }
 
     inner class ViewHolder(val binding: ItemMovie1Binding) : RecyclerView.ViewHolder(binding.root)

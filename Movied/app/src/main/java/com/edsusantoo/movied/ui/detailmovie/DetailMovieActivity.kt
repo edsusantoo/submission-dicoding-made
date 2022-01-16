@@ -30,10 +30,8 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class DetailMovieActivity : AppCompatActivity() {
-    private val detailMovieViewModel:DetailMovieViewModel by viewModels()
-
-
-    private lateinit var binding:ActivityDetailMovieBinding
+    private val detailMovieViewModel: DetailMovieViewModel by viewModels()
+    private lateinit var binding: ActivityDetailMovieBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityDetailMovieBinding.inflate(layoutInflater)
@@ -56,7 +54,7 @@ class DetailMovieActivity : AppCompatActivity() {
                                     Glide.with(binding.root)
                                         .load(
                                             Constants.BASE_URL_IMAGE_MOVIE +
-                                                    movie.data?.backdropPath
+                                                movie.data?.backdropPath
                                         )
                                         .error(R.drawable.movie_backdrop_path_template)
                                         .fitCenter()
@@ -66,7 +64,7 @@ class DetailMovieActivity : AppCompatActivity() {
                                     Glide.with(binding.root)
                                         .load(
                                             Constants.BASE_URL_IMAGE_MOVIE +
-                                                    movie.data?.posterPath
+                                                movie.data?.posterPath
                                         )
                                         .error(R.drawable.movie_poster_template)
                                         .fitCenter()
@@ -101,7 +99,7 @@ class DetailMovieActivity : AppCompatActivity() {
                                         val uri =
                                             Uri.parse(
                                                 ("movied://videoplayer?video=${video}&" +
-                                                        "site=${site}").trim()
+                                                    "site=${site}").trim()
                                             )
                                         startActivity(Intent(Intent.ACTION_VIEW, uri))
                                     }
@@ -189,7 +187,7 @@ class DetailMovieActivity : AppCompatActivity() {
                                     Glide.with(binding.root)
                                         .load(
                                             Constants.BASE_URL_IMAGE_MOVIE +
-                                                    movie.data?.backdropPath
+                                                movie.data?.backdropPath
                                         )
                                         .error(R.drawable.movie_backdrop_path_template)
                                         .fitCenter()
@@ -199,7 +197,7 @@ class DetailMovieActivity : AppCompatActivity() {
                                     Glide.with(binding.root)
                                         .load(
                                             Constants.BASE_URL_IMAGE_MOVIE +
-                                                    movie.data?.posterPath
+                                                movie.data?.posterPath
                                         )
                                         .error(R.drawable.movie_poster_template)
                                         .fitCenter()
@@ -235,7 +233,7 @@ class DetailMovieActivity : AppCompatActivity() {
                                         val uri =
                                             Uri.parse(
                                                 ("movied://videoplayer?video=${video}&" +
-                                                        "site=${site}").trim()
+                                                    "site=${site}").trim()
                                             )
                                         startActivity(Intent(Intent.ACTION_VIEW, uri))
                                     }
