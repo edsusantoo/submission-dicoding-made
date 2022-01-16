@@ -45,79 +45,79 @@ class SearchFragment : Fragment() {
     private fun initView() {
         if (activity != null) {
             binding.search.setOnQueryTextListener(object :
-                SearchView.OnQueryTextListener,
-                androidx.appcompat.widget.SearchView.OnQueryTextListener {
-                override fun onQueryTextSubmit(p0: String?): Boolean {
-                    return true
-                }
-
-                override fun onQueryTextChange(p0: String?): Boolean {
-                    if (p0 != null && p0.isNotEmpty()) {
-                        Handler(Looper.getMainLooper()).postDelayed({
-                            binding.groupSearchLabel.isVisible = false
-                            binding.loading.isVisible = true
-                            binding.rvSearch.isVisible = false
-                            searchViewModel.searchMovie(p0)
-                                .observe(viewLifecycleOwner, { movie ->
-                                    if (movie != null && movie.data?.count() != 0) {
-                                        when (movie) {
-                                            is Resource.Loading -> {
-                                                binding.groupSearchLabel.isVisible = false
-                                                binding.loading.isVisible = true
-                                                binding.rvSearch.isVisible = false
-                                                binding.groupMovieEmpty.isVisible = false
-                                            }
-                                            is Resource.Success -> {
-                                                binding.loading.isVisible = false
-                                                binding.rvSearch.isVisible = true
-                                                binding.groupMovieEmpty.isVisible = false
-                                                binding.rvSearch.layoutManager =
-                                                    GridLayoutManager(context, 2)
-                                                binding.rvSearch.adapter =
-                                                    MovieAnyAdapter(
-                                                        movie.data,
-                                                        object : MovieAnyAdapter.MovieAnyListener {
-                                                            override fun onClickListener(
-                                                                data: Movie,
-                                                                position: Int
-                                                            ) {
-                                                                val intent = Intent(
-                                                                    activity,
-                                                                    DetailMovieActivity::class.java
-                                                                )
-                                                                intent.putExtra(
-                                                                    Constants.INTENT_DATA_PARCELABLE,
-                                                                    movie.data?.get(position)
-                                                                )
-                                                                startActivity(intent)
-                                                            }
-                                                        }
-                                                    )
-                                            }
-                                            is Resource.Error -> {
-                                                Toast.makeText(
-                                                    context,
-                                                    movie.message,
-                                                    Toast.LENGTH_SHORT
-                                                ).show()
-                                            }
-                                        }
-                                    } else {
-                                        binding.loading.isVisible = false
-                                        binding.rvSearch.isVisible = false
-                                        binding.groupMovieEmpty.isVisible = true
-                                    }
-                                })
-                        }, 800)
-                    } else {
-                        binding.groupSearchLabel.isVisible = true
-                        binding.loading.isVisible = false
-                        binding.rvSearch.isVisible = false
-                        binding.groupMovieEmpty.isVisible = false
+                    SearchView.OnQueryTextListener,
+                    androidx.appcompat.widget.SearchView.OnQueryTextListener {
+                    override fun onQueryTextSubmit(p0: String?): Boolean {
+                        return true
                     }
-                    return true
-                }
-            })
+
+                    override fun onQueryTextChange(p0: String?): Boolean {
+                        if (p0 != null && p0.isNotEmpty()) {
+                            Handler(Looper.getMainLooper()).postDelayed({
+                                binding.groupSearchLabel.isVisible = false
+                                binding.loading.isVisible = true
+                                binding.rvSearch.isVisible = false
+                                searchViewModel.searchMovie(p0)
+                                    .observe(viewLifecycleOwner, { movie ->
+                                        if (movie != null && movie.data?.count() != 0) {
+                                            when (movie) {
+                                                is Resource.Loading -> {
+                                                    binding.groupSearchLabel.isVisible = false
+                                                    binding.loading.isVisible = true
+                                                    binding.rvSearch.isVisible = false
+                                                    binding.groupMovieEmpty.isVisible = false
+                                                }
+                                                is Resource.Success -> {
+                                                    binding.loading.isVisible = false
+                                                    binding.rvSearch.isVisible = true
+                                                    binding.groupMovieEmpty.isVisible = false
+                                                    binding.rvSearch.layoutManager =
+                                                        GridLayoutManager(context, 2)
+                                                    binding.rvSearch.adapter =
+                                                        MovieAnyAdapter(
+                                                            movie.data,
+                                                            object : MovieAnyAdapter.MovieAnyListener {
+                                                                override fun onClickListener(
+                                                                    data: Movie,
+                                                                    position: Int
+                                                                ) {
+                                                                    val intent = Intent(
+                                                                        activity,
+                                                                        DetailMovieActivity::class.java
+                                                                    )
+                                                                    intent.putExtra(
+                                                                        Constants.INTENT_DATA_PARCELABLE,
+                                                                        movie.data?.get(position)
+                                                                    )
+                                                                    startActivity(intent)
+                                                                }
+                                                            }
+                                                        )
+                                                }
+                                                is Resource.Error -> {
+                                                    Toast.makeText(
+                                                        context,
+                                                        movie.message,
+                                                        Toast.LENGTH_SHORT
+                                                    ).show()
+                                                }
+                                            }
+                                        } else {
+                                            binding.loading.isVisible = false
+                                            binding.rvSearch.isVisible = false
+                                            binding.groupMovieEmpty.isVisible = true
+                                        }
+                                    })
+                            }, 800)
+                        } else {
+                            binding.groupSearchLabel.isVisible = true
+                            binding.loading.isVisible = false
+                            binding.rvSearch.isVisible = false
+                            binding.groupMovieEmpty.isVisible = false
+                        }
+                        return true
+                    }
+                })
         }
     }
 
