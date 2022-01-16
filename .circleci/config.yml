@@ -37,7 +37,6 @@
           - store_artifacts:  
               path: app/build/outputs/apk/debug/
               destination: artifact-file
-          - run :
           - run:
               name: Run Ktlint
               command: ./gradlew ktlint
