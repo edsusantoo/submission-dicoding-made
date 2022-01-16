@@ -2,9 +2,9 @@ package com.edsusantoo.core.data.source.local.dao
 
 import androidx.room.Dao
 import androidx.room.Insert
+import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
-import androidx.room.OnConflictStrategy
 import com.edsusantoo.core.data.source.local.entity.UserEntity
 import io.reactivex.Flowable
 import io.reactivex.Single

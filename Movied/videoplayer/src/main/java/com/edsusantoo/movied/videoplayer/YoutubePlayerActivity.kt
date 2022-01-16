@@ -35,18 +35,16 @@ class YoutubePlayerActivity : YouTubeBaseActivity() {
                 }
 
                 override fun onInitializationFailure(
-                p0: YouTubePlayer.Provider?,
-                p1: YouTubeInitializationResult?
-            ) {
-                Toast.makeText(
-                    this@YoutubePlayerActivity,
-                    "Video player failed",
-                    Toast.LENGTH_SHORT
-                ).show()
+                    p0: YouTubePlayer.Provider?,
+                    p1: YouTubeInitializationResult?
+                ) {
+                    Toast.makeText(
+                        this@YoutubePlayerActivity,
+                        "Video player failed",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
             }
-
-        })
-
+        )
     }
-
 }

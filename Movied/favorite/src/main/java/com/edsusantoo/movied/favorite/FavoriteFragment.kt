@@ -51,7 +51,8 @@ class FavoriteFragment : Fragment() {
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentFavoriteBinding.inflate(inflater, container, false)
@@ -78,7 +79,8 @@ class FavoriteFragment : Fragment() {
                             LinearLayoutManager.VERTICAL,
                             false
                         )
-                        binding.rvFavorite.adapter = FavoriteMovieAdapter(movieFavorite,
+                        binding.rvFavorite.adapter = FavoriteMovieAdapter(
+                            movieFavorite,
                             object : FavoriteMovieAdapter.FavoriteMovieListener {
                                 override fun onViewHolder(
                                     view: ItemFavoriteMovieBinding,
@@ -108,7 +110,6 @@ class FavoriteFragment : Fragment() {
                                             view.chipGenre.addView(chipGenre)
                                         }
                                     }
-
                                 }
 
                                 override fun onClickListener(
@@ -123,8 +124,8 @@ class FavoriteFragment : Fragment() {
                                     )
                                     startActivity(intent)
                                 }
-
-                            })
+                            }
+                        )
                     } else {
                         binding.loading.isVisible = false
                         binding.rvFavorite.isVisible = false
