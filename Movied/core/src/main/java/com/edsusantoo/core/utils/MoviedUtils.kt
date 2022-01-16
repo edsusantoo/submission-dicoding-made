@@ -11,7 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.google.gson.Gson
 import java.text.SimpleDateFormat
-import java.util.*
+import java.util.Locale
 
 object MoviedUtils {
 
