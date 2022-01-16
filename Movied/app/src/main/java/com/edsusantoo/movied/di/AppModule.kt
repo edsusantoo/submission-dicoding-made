@@ -23,5 +23,4 @@ abstract class AppModule {
 
     @Binds
     abstract fun provideUserUseCase(userInteractor: UserInteractor): UserUseCase
-
 }
