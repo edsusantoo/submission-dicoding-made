@@ -1,6 +1,7 @@
-[![ktlint](https://img.shields.io/badge/code%20style-%E2%9D%A4-FF4081.svg)](https://ktlint.github.io/)  [![edsusantoo](https://circleci.com/gh/edsusantoo/submission-dicoding-made.svg?style=shield)](https://circleci.com/gh/edsusantoo/submission-dicoding-made)
 
 # Movied :construction:
+[![ktlint](https://img.shields.io/badge/code%20style-%E2%9D%A4-FF4081.svg)](https://ktlint.github.io/)  [![edsusantoo](https://circleci.com/gh/edsusantoo/submission-dicoding-made.svg?style=shield)](https://circleci.com/gh/edsusantoo/submission-dicoding-made)
+
 Hii.. this project is the final submission of the class Menjadi Android Developer Expert from Dicoding Academy
 
 ### Update List
@@ -28,30 +29,15 @@ Hii.. this project is the final submission of the class Menjadi Android Develope
 
 
 ### Screenshot
-| Screen | Image |
-| :---: | :---: |
-| Welcome | ![](https://ibb.co/smGPj40) |
-| Signup | ![](https://ibb.co/9htDRV4) |
-| Login | ![](https://ibb.co/KrcnSNN) |
-| Home | ![](https://i.ibb.co/8DnNxn0/photo6280296966751628842.jpg) |
-| Search | ![](https://ibb.co/71TxDZz) |
-| Favorite | ![](https://ibb.co/6mfrmyJ) |
-| Profile | ![](https://ibb.co/cNy3ZqS) |
-| Edit Profile | ![](https://ibb.co/L9v42NK) |
-| Detail | ![](https://ibb.co/5rTCD8q) |
+| ![](https://ibb.co/smGPj40) | ![](https://ibb.co/9htDRV4) | ![](https://ibb.co/KrcnSNN) |
+|--|--|--|
+| Welcome | Signup | Login |
+| ![](https://i.ibb.co/8DnNxn0/photo6280296966751628842.jpg) | ![](https://ibb.co/71TxDZz) | ![](https://ibb.co/6mfrmyJ) |
+|--|--|--|
+| Home | Search | Favorite |
+| ![](https://ibb.co/cNy3ZqS) | ![](https://ibb.co/L9v42NK) | ![](https://ibb.co/5rTCD8q) |
+| Profile | Edit Profile | Detail |
 
-```
-Copyright 2022 Edi Susanto
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-    http://www.apache.org/licenses/LICENSE-2.0
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
-```
 
 
 
