@@ -33,7 +33,7 @@ Hii.. this project is the final submission of the class Menjadi Android Develope
 | Welcome | ![](https://ibb.co/smGPj40) |
 | Signup | ![](https://ibb.co/9htDRV4) |
 | Login | ![](https://ibb.co/KrcnSNN) |
-| Home | ![](https://ibb.co/SXD5mDP) |
+| Home | ![](https://i.ibb.co/8DnNxn0/photo6280296966751628842.jpg) |
 | Search | ![](https://ibb.co/71TxDZz) |
 | Favorite | ![](https://ibb.co/6mfrmyJ) |
 | Profile | ![](https://ibb.co/cNy3ZqS) |
