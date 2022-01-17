@@ -29,14 +29,17 @@ Hii.. this project is the final submission of the class Menjadi Android Develope
 
 
 ### Screenshot
-| ![](https://ibb.co/smGPj40) | ![](https://ibb.co/9htDRV4) | ![](https://ibb.co/KrcnSNN) |
+
+---
+| ![](https://i.ibb.co/smGPj40/photo6280296966751628846.jpg) | ![](https://i.ibb.co/m08jQXy/photo6280296966751628844.jpg)  |![](https://i.ibb.co/KrcnSNN/photo6280296966751628845.jpg) |
 |--|--|--|
-| Welcome | Signup | Login |
-| ![](https://i.ibb.co/8DnNxn0/photo6280296966751628842.jpg) | ![](https://ibb.co/71TxDZz) | ![](https://ibb.co/6mfrmyJ) |
+|Welcome|Signup|Login|
+| ![](https://i.ibb.co/8DnNxn0/photo6280296966751628842.jpg) | ![](https://i.ibb.co/5RzX3S9/photo6280296966751628850.jpg) | ![](https://i.ibb.co/6mfrmyJ/photo6280296966751628849.jpg) |
 |--|--|--|
-| Home | Search | Favorite |
-| ![](https://ibb.co/cNy3ZqS) | ![](https://ibb.co/L9v42NK) | ![](https://ibb.co/5rTCD8q) |
+|Home|Search|Favorite|
+| ![](https://i.ibb.co/cNy3ZqS/photo6280296966751628848.jpg) | ![](https://i.ibb.co/L9v42NK/photo6280296966751628847.jpg) | ![](https://i.ibb.co/5rTCD8q/photo6280296966751628843.jpg) |
 | Profile | Edit Profile | Detail |
+---
 
 
 
