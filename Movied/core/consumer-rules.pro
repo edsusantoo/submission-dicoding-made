@@ -107,6 +107,7 @@
 -dontwarn com.squareup.leakcanary.**
 -keep class com.squareup.haha.** { *; }
 -keep class com.squareup.leakcanary.** { *; }
+-keep class leakcanary.** { *; }
 
 # Marshmallow removed Notification.setLatestEventInfo()
 -dontwarn android.app.Notification
