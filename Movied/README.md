@@ -13,14 +13,13 @@
 - [ ] Notification Scheduler at a certain time
 - [ ] Unit Test
 - [ ] Instrument Test
-- [ ] Image Profile
 
 
 ### Tech Stack and 3rd library
 - MVVM ([docs](https://developer.android.com/jetpack/guide))
 - Room ([docs](https://developer.android.com/topic/libraries/architecture/room)
 - Hilt ([docs](https://developer.android.com/training/dependency-injection/hilt-android))
-- ReactiveX ([docs - RxJava](https://github.com/ReactiveX/RxAndroid) ; [docs - RxBinding](https://github.com/JakeWharton/RxBinding))
+- ReactiveX ([docs - RxJava](https://github.com/ReactiveX/RxAndroid) | [docs - RxBinding](https://github.com/JakeWharton/RxBinding))
 - Retrofit ([docs](https://square.github.io/retrofit/)) 
 - Glide ([docs](https://bumptech.github.io/glide/))
 - OkHttp ([docs](https://square.github.io/okhttp/))
