@@ -2,7 +2,7 @@
 # Movied :construction:
 [![ktlint](https://img.shields.io/badge/code%20style-%E2%9D%A4-FF4081.svg)](https://ktlint.github.io/)  [![edsusantoo](https://circleci.com/gh/edsusantoo/submission-dicoding-made.svg?style=shield)](https://circleci.com/gh/edsusantoo/submission-dicoding-made)
 
-Hii.. this project is the final submission of the class Menjadi Android Developer Expert from Dicoding Academy
+## Hii.. this project is the final submission of the class Menjadi Android Developer Expert from Dicoding Academy
 
 ### Update List
 - [x] Favorite Movie Local
@@ -29,17 +29,12 @@ Hii.. this project is the final submission of the class Menjadi Android Develope
 
 
 ### Screenshot
-
----
-| ![](https://i.ibb.co/smGPj40/photo6280296966751628846.jpg) | ![](https://i.ibb.co/m08jQXy/photo6280296966751628844.jpg)  |![](https://i.ibb.co/KrcnSNN/photo6280296966751628845.jpg) |
-|--|--|--|
+| ![](https://i.ibb.co/smGPj40/photo6280296966751628846.jpg | width=100)| ![](https://i.ibb.co/m08jQXy/photo6280296966751628844.jpg | width=100))  |![](https://i.ibb.co/KrcnSNN/photo6280296966751628845.jpg | width=100)) |
 |Welcome|Signup|Login|
-| ![](https://i.ibb.co/8DnNxn0/photo6280296966751628842.jpg) | ![](https://i.ibb.co/5RzX3S9/photo6280296966751628850.jpg) | ![](https://i.ibb.co/6mfrmyJ/photo6280296966751628849.jpg) |
-|--|--|--|
+| ![](https://i.ibb.co/8DnNxn0/photo6280296966751628842.jpg | width=100)) | ![](https://i.ibb.co/5RzX3S9/photo6280296966751628850.jpg | width=100)) | ![](https://i.ibb.co/6mfrmyJ/photo6280296966751628849.jpg | width=100)) |
 |Home|Search|Favorite|
-| ![](https://i.ibb.co/cNy3ZqS/photo6280296966751628848.jpg) | ![](https://i.ibb.co/L9v42NK/photo6280296966751628847.jpg) | ![](https://i.ibb.co/5rTCD8q/photo6280296966751628843.jpg) |
+| ![](https://i.ibb.co/cNy3ZqS/photo6280296966751628848.jpg | width=100)) | ![](https://i.ibb.co/L9v42NK/photo6280296966751628847.jpg | width=100)) | ![](https://i.ibb.co/5rTCD8q/photo6280296966751628843.jpg | width=100)) |
 | Profile | Edit Profile | Detail |
----
 
 
 
