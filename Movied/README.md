@@ -1,17 +1,18 @@
 [![ktlint](https://img.shields.io/badge/code%20style-%E2%9D%A4-FF4081.svg)](https://ktlint.github.io/)  [![edsusantoo](https://circleci.com/gh/edsusantoo/submission-dicoding-made.svg?style=shield)](https://circleci.com/gh/edsusantoo/submission-dicoding-made)
 
-## Movied :construction:
-=======================
+# Movied :construction:
 Hii.. this project is the final submission of the class Menjadi Android Developer Expert from Dicoding Academy
 
 ### Update List
 - [x] Favorite Movie Local
+- [ ] Image Profile
 - [ ] Login Facebook
 - [ ] Login Gmail
 - [ ] Notification Release Movie
 - [ ] Notification Scheduler at a certain time
 - [ ] Unit Test
 - [ ] Instrument Test
+- [ ] Image Profile
 
 
 ### Tech Stack and 3rd library
@@ -29,10 +30,15 @@ Hii.. this project is the final submission of the class Menjadi Android Develope
 ### Screenshot
 | Screen | Image |
 | :---: | :---: |
-| Welcome | ![](https://drive.google.com/file/d/1GJy4jSE2Ss3QVQBX_CJx2f-Ge64M1T7C/view?usp=sharing) |
-| Signup | ![](https://drive.google.com/file/d/1lZ_TiTdP_VbnsJ8pChPq7wC3hlbVigOY/view?usp=sharing) |
-| Login | ![](https://drive.google.com/file/d/1XvRtI_8X6rAeM2iNlL-XFNoarnLn6RRO/view?usp=sharing) |
-| Home | ![](https://drive.google.com/file/d/1AFiIgumG7SozDgkLdU0rVUGjkuphlDDL/view?usp=sharing) |
+| Welcome | ![](https://ibb.co/smGPj40) |
+| Signup | ![](https://ibb.co/9htDRV4) |
+| Login | ![](https://ibb.co/KrcnSNN) |
+| Home | ![](https://ibb.co/SXD5mDP) |
+| Search | ![](https://ibb.co/71TxDZz) |
+| Favorite | ![](https://ibb.co/6mfrmyJ) |
+| Profile | ![](https://ibb.co/cNy3ZqS) |
+| Edit Profile | ![](https://ibb.co/L9v42NK) |
+| Detail | ![](https://ibb.co/5rTCD8q) |
 
 ```
 Copyright 2022 Edi Susanto
